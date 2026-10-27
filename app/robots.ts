@@ -22,6 +22,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://rafalkamieniarz.pl/sitemap.xml',
+    sitemap: 'https://rafalkamieniarz.com/sitemap.xml',
   };
 }

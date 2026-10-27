@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ChevronRight, Compass, Sparkles } from 'lucide-react'
 import { SiteHeader } from '@/components/growth-wheel/site-header'
+import { AcgwLicenseFooter } from '@/components/growth-wheel/acgw-license-footer'
 import { buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
@@ -92,7 +93,7 @@ export default async function CompetencyDetailPage({ params }: Props) {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href="/"
+              href={`/metodyki-zwinne/agile-growth-wheel?focus=${competency.id}`}
               className={buttonVariants({ size: 'sm', className: 'bg-indigo-600 hover:bg-indigo-700 text-white' })}
             >
               <Compass className="mr-2 size-4" />
@@ -234,10 +235,10 @@ export default async function CompetencyDetailPage({ params }: Props) {
           </Link>
 
           <Link
-            href="/"
+            href={`/metodyki-zwinne/agile-growth-wheel?focus=${competency.id}`}
             className={buttonVariants({ size: 'sm', className: 'bg-indigo-600 hover:bg-indigo-700 text-white' })}
           >
-            Koło audytu
+            Otwórz koło audytu →
           </Link>
 
           <Link
@@ -248,6 +249,8 @@ export default async function CompetencyDetailPage({ params }: Props) {
             <ArrowRight className="size-4" />
           </Link>
         </nav>
+
+        <AcgwLicenseFooter lang="pl" />
       </main>
     </div>
   )

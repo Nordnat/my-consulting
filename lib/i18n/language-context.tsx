@@ -2,13 +2,13 @@
 
 import React, { createContext, useContext, useEffect, useState, useMemo } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { TRANSLATIONS, type Language } from './translations'
+import { TRANSLATIONS, type Language, type Translations } from './translations'
 import { getAlternateLanguagePath, getLanguageFromPathname } from './navigation'
 
 type LanguageContextValue = {
   language: Language
   setLanguage: (lang: Language) => void
-  t: typeof TRANSLATIONS['pl']
+  t: Translations
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null)

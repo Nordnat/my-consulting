@@ -46,8 +46,8 @@ export function CookieConsent({ initialConsent }: { initialConsent: ConsentValue
                   Pliki cookies
                 </h2>
                 <p id={descId} className="text-sm leading-relaxed text-muted-foreground text-pretty">
-                  Używamy niezbędnych plików cookies, aby narzędzie działało poprawnie. Za Twoją zgodą korzystamy też
-                  z anonimowej analityki, która pomaga nam ulepszać audyt.
+                  Używamy niezbędnych plików cookies, aby strona działała poprawnie. Za Twoją zgodą korzystamy też
+                  z anonimowej analityki, która pomaga nam ulepszać stronę.
                 </p>
               </div>
             </div>

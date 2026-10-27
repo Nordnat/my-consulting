@@ -1,16 +1,16 @@
 'use client'
 
-import { Activity, GitBranch, MessagesSquare, Workflow } from 'lucide-react'
+import { GitBranch, MessagesSquare, Sparkles, Workflow } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { SectionHeading } from './section-heading'
 
-const ICONS = [Workflow, Activity, GitBranch, MessagesSquare]
+const ICONS = [Workflow, GitBranch, MessagesSquare, Sparkles]
 
 export function Services() {
   const { t } = useLanguage()
 
   return (
-    <section id="uslugi" aria-labelledby="services-heading" className="scroll-mt-14 border-b border-slate-200">
+    <section id="ekspertyza" aria-labelledby="services-heading" className="scroll-mt-14 border-b border-slate-200">
       <div className="mx-auto flex max-w-7xl flex-col gap-12 px-6 py-16 md:px-10 lg:py-24">
         <SectionHeading
           id="services-heading"

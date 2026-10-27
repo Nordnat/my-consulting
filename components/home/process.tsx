@@ -5,10 +5,10 @@ import { SectionHeading } from './section-heading'
 
 export function Process() {
   const { language, t } = useLanguage()
-  const stageLabel = language === 'en' ? 'Stage' : 'Etap'
+  const stageLabel = language === 'en' ? 'Principle' : 'Zasada'
 
   return (
-    <section id="wspolpraca" aria-labelledby="process-heading" className="scroll-mt-14 border-b border-slate-200">
+    <section id="podejscie" aria-labelledby="process-heading" className="scroll-mt-14 border-b border-slate-200">
       <div className="mx-auto flex max-w-7xl flex-col gap-12 px-6 py-16 md:px-10 lg:py-24">
         <SectionHeading
           id="process-heading"

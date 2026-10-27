@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, BookOpen, Database, Globe } from 'lucide-react';
 import { SiteHeader } from '@/components/growth-wheel/site-header';
+import { AcgwLicenseFooter } from '@/components/growth-wheel/acgw-license-footer';
 import { buttonVariants } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { DOMAIN_KNOWLEDGE_EN } from '@/lib/growth-wheel-data-en';
@@ -20,17 +21,17 @@ export const metadata: Metadata = {
     'MedTech Agile',
   ],
   alternates: {
-    canonical: 'https://rafalkamieniarz.pl/en/competency/domain-knowledge',
+    canonical: 'https://rafalkamieniarz.com/en/competency/domain-knowledge',
     languages: {
-      'pl-PL': 'https://rafalkamieniarz.pl/kompetencja/domain-knowledge',
-      'en-US': 'https://rafalkamieniarz.pl/en/competency/domain-knowledge',
+      'pl-PL': 'https://rafalkamieniarz.com/kompetencja/domain-knowledge',
+      'en-US': 'https://rafalkamieniarz.com/en/competency/domain-knowledge',
     },
   },
   openGraph: {
     title: 'Domain Knowledge | Agile Coaching Growth Wheel',
     description:
       'Understanding the outer ring: Business domains, engineering architecture, and product discovery.',
-    url: 'https://rafalkamieniarz.pl/en/competency/domain-knowledge',
+    url: 'https://rafalkamieniarz.com/en/competency/domain-knowledge',
     locale: 'en_US',
   },
 };
@@ -45,13 +46,13 @@ export default function EnglishDomainKnowledgePage() {
       '@type': 'Person',
       name: 'Rafał Kamieniarz',
       jobTitle: 'Agile Delivery Consultant & Coach',
-      url: 'https://rafalkamieniarz.pl/en',
+      url: 'https://rafalkamieniarz.com/en',
     },
     about: {
       '@type': 'DefinedTerm',
       name: DOMAIN_KNOWLEDGE_EN.name,
       description: DOMAIN_KNOWLEDGE_EN.description,
-      inDefinedTermSet: 'https://rafalkamieniarz.pl/en/agile-growth-wheel',
+      inDefinedTermSet: 'https://rafalkamieniarz.com/en/agile-growth-wheel',
     },
   };
 
@@ -230,12 +231,14 @@ export default function EnglishDomainKnowledgePage() {
             ← Explore Agile Growth Wheel
           </Link>
           <Link
-            href="/en"
+            href="/en/agile-growth-wheel"
             className={buttonVariants({ size: 'sm', className: 'bg-indigo-600 hover:bg-indigo-700 text-white' })}
           >
-            Explore Consulting Services →
+            Open Growth Wheel Assessment →
           </Link>
         </div>
+
+        <AcgwLicenseFooter lang="en" />
       </main>
     </div>
   );

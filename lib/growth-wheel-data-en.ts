@@ -255,3 +255,5 @@ export function getNextPrevCompetencyEn(id: CompetencyId): {
     next: COMPETENCIES_EN[nextIndex],
   }
 }
+
+export type { CompetencyId, Rating }

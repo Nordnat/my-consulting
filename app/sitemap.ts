@@ -3,7 +3,7 @@ import { COMPETENCIES } from '@/lib/growth-wheel-data';
 import { COMPETENCIES_EN } from '@/lib/growth-wheel-data-en';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://rafalkamieniarz.pl';
+  const baseUrl = 'https://rafalkamieniarz.com';
   const now = new Date();
 
   const entries: MetadataRoute.Sitemap = [
@@ -82,6 +82,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: {
           'pl-PL': `${baseUrl}/kompetencja/domain-knowledge`,
           'en-US': `${baseUrl}/en/competency/domain-knowledge`,
+        },
+      },
+    },
+    // Polish Privacy Policy
+    {
+      url: `${baseUrl}/polityka-prywatnosci`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.3,
+      alternates: {
+        languages: {
+          'pl-PL': `${baseUrl}/polityka-prywatnosci`,
+          'en-US': `${baseUrl}/en/privacy-policy`,
+        },
+      },
+    },
+    // English Privacy Policy
+    {
+      url: `${baseUrl}/en/privacy-policy`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.3,
+      alternates: {
+        languages: {
+          'pl-PL': `${baseUrl}/polityka-prywatnosci`,
+          'en-US': `${baseUrl}/en/privacy-policy`,
         },
       },
     },

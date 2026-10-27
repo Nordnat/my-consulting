@@ -7,12 +7,11 @@ import { useLanguage } from '@/lib/i18n/language-context'
 export function SiteFooter() {
   const { language, t } = useLanguage()
   const isEn = language === 'en'
-  const auditHref = isEn ? '/en/agile-growth-wheel' : '/metodyki-zwinne/agile-growth-wheel'
+  const wheelHref = isEn ? '/en/agile-growth-wheel' : '/metodyki-zwinne/agile-growth-wheel'
 
   const links = [
-    { label: isEn ? 'Growth Wheel Assessment' : 'Audyt Growth Wheel', href: auditHref },
+    { label: 'Agile Growth Wheel', href: wheelHref },
     { label: t.home.footer.privacy, href: isEn ? '/en/privacy-policy' : '/polityka-prywatnosci' },
-    { label: t.home.footer.terms, href: isEn ? '/en/terms' : '/regulamin' },
   ]
 
   return (

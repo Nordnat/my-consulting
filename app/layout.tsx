@@ -11,13 +11,13 @@ const geistSans = Geist({ subsets: ['latin', 'latin-ext'], variable: '--font-gei
 const geistMono = Geist_Mono({ subsets: ['latin', 'latin-ext'], variable: '--font-geist-mono' })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rafalkamieniarz.pl'),
+  metadataBase: new URL('https://rafalkamieniarz.com'),
   title: {
-    default: 'Rafał Kamieniarz — Agile Delivery & Coaching',
+    default: 'Rafał Kamieniarz — Engineering Manager & Agile Leader',
     template: '%s | Rafał Kamieniarz',
   },
   description:
-    'Wsparcie zespołów technologicznych w problemach z delivery, procesach Agile, metrykach przepływu i DORA oraz coaching profesjonalny. Bezpłatny audyt Agile Coaching Growth Wheel.',
+    'Engineering Manager i Agile Leader z ponad 8-letnim doświadczeniem w Samsung Electronics. Delivery i metryki przepływu (DORA), Ways of Working, coaching i rozwój liderów oraz interaktywna mapa kompetencji Agile Coaching Growth Wheel.',
   keywords: [
     'Agile Delivery',
     'Agile Coaching',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     'DORA metrics',
     'Rafał Kamieniarz',
     'Ways of Working',
-    'Audyt zwinności',
+    'Engineering Manager',
   ],
   authors: [{ name: 'Rafał Kamieniarz', url: 'https://www.linkedin.com/in/rafal-kamieniarz-warsaw' }],
   alternates: {
@@ -40,11 +40,11 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Rafał Kamieniarz — Agile Delivery & Coaching',
+    title: 'Rafał Kamieniarz — Engineering Manager & Agile Leader',
     description:
-      'Wsparcie zespołów technologicznych w problemach z delivery, procesach Agile, metrykach przepływu i DORA oraz coaching profesjonalny.',
-    url: 'https://rafalkamieniarz.pl',
-    siteName: 'Rafał Kamieniarz — Consulting',
+      'Engineering Manager i Agile Leader z ponad 8-letnim doświadczeniem w Samsung Electronics. Delivery, metryki przepływu i DORA, Ways of Working oraz rozwój liderów.',
+    url: 'https://rafalkamieniarz.com',
+    siteName: 'Rafał Kamieniarz',
     locale: 'pl_PL',
     type: 'website',
   },

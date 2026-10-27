@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle, Database, Globe, Layers, ShieldCheck } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle, Compass, Database, Globe, Layers, ShieldCheck } from 'lucide-react'
 import { SiteHeader } from '@/components/growth-wheel/site-header'
+import { AcgwLicenseFooter } from '@/components/growth-wheel/acgw-license-footer'
 import { buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { DOMAIN_KNOWLEDGE } from '@/lib/growth-wheel-data'
@@ -48,10 +49,10 @@ export default function DomainKnowledgePage() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href="/"
+              href="/metodyki-zwinne/agile-growth-wheel"
               className={buttonVariants({ size: 'sm', className: 'bg-indigo-600 hover:bg-indigo-700 text-white' })}
             >
-              <ArrowLeft className="mr-2 size-4" />
+              <Compass className="mr-2 size-4" />
               Wróć do koła audytu
             </Link>
             <Link
@@ -183,12 +184,14 @@ export default function DomainKnowledgePage() {
             ← Przegląd Agile Growth Wheel
           </Link>
           <Link
-            href="/"
+            href="/metodyki-zwinne/agile-growth-wheel"
             className={buttonVariants({ size: 'sm', className: 'bg-indigo-600 hover:bg-indigo-700 text-white' })}
           >
-            Oceń kompetencje w audycie →
+            Otwórz koło audytu →
           </Link>
         </div>
+
+        <AcgwLicenseFooter lang="pl" />
       </main>
     </div>
   )

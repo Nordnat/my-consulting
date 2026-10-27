@@ -1,126 +1,130 @@
-# Rafał Kamieniarz — Agile Delivery & Coaching Consulting
+# Rafał Kamieniarz — Engineering Manager & Agile Leader
 
-> Expert Agile Delivery Management, Engineering Leadership, and Organizational Transformation based on the **Agile Coaching Growth Wheel** framework.
+> Personal website of Rafał Kamieniarz, Engineering Manager and Agile Leader with 8+ years at Samsung Electronics (Samsung Ads). Topics: delivery and flow metrics (DORA), Agile and Ways of Working, coaching and developing leaders, AI in the software development lifecycle.
 
-- **Founder & Principal Consultant**: Rafał Kamieniarz
-- **Website**: https://rafalkamieniarz.pl
-- **English Portal**: https://rafalkamieniarz.pl/en
-- **Interactive Tool**: https://rafalkamieniarz.pl/metodyki-zwinne/agile-growth-wheel (Polish) | https://rafalkamieniarz.pl/en/agile-growth-wheel (English)
-- **Primary Specializations**: Agile Delivery Management, Scrum Master Mentoring, Agile Coaching Growth Wheel Assessments, Engineering Leadership, High-Performance Software Teams, Fractional Agile Lead.
-
----
-
-## Core Services
-
-1. **Strategic Agile Advisory (Doradztwo Strategiczne)**
-   - Audit of delivery processes and engineering value stream mapping.
-   - Alignment of business strategy (OKRs, Product Roadmaps) with engineering execution.
-   - Framework selection and pragmatism: Scrum, Kanban, LeSS, Shape Up.
-
-2. **Agile Team & Leadership Coaching (Coaching Zespołów i Liderów)**
-   - Assessment and development using the Agile Coaching Growth Wheel.
-   - 1:1 executive coaching for Engineering Directors, Head of Product, and Scrum Masters.
-   - Root-cause diagnosis of delivery bottlenecks, team friction, and predictability issues.
-
-3. **Fractional Agile Delivery Lead (Zarządzanie Wdrożeniami)**
-   - Hands-on leadership in critical delivery phases, transformations, and digital product rollouts.
-   - Setup of continuous delivery metrics (DORA metrics, Lead Time, Cycle Time, Throughput).
-   - Establishing engineering culture of ownership and psychological safety.
+- **Person**: Rafał Kamieniarz
+- **Website**: https://rafalkamieniarz.com
+- **English version**: https://rafalkamieniarz.com/en
+- **LinkedIn**: https://www.linkedin.com/in/rafal-kamieniarz-warsaw
+- **Interactive tool (self-assessment)**: https://rafalkamieniarz.com/metodyki-zwinne/agile-growth-wheel (Polish) | https://rafalkamieniarz.com/en/agile-growth-wheel (English)
 
 ---
 
-## Agile Coaching Growth Wheel Framework
+## About
 
-The Agile Coaching Growth Wheel is an industry-standard competency framework consisting of **9 core competencies**, **22 subcompetencies**, and an encompassing **Domain Knowledge** outer ring.
+- Engineering Manager & Head of Part at Samsung Ads (2024–2026): led two Scrum teams (15 engineers) working with teams in Mountain View; co-led the launch of a new AdTech product from zero to release; transformed Ways of Working toward full technical ownership in teams.
+- Senior Software Engineer & Scrum Master at Samsung Electronics Poland (2022–2024): combined architecture work with the Scrum Master role; removed cross-team dependencies and improved sprint predictability.
+- Software Engineer at Samsung Electronics Poland (2018–2022): web applications in React, Angular and TypeScript.
+- Certifications: Professional Scrum Master II (PSM II), CoachWise Coaching Essentials, CoachWise Facilitation Essentials, Change Management Foundation V3, AI_managers 2 – AI Management, AWS Certified Cloud Practitioner.
 
-### 1. Self-Mastery (Samoświadomość i Samodoskonalenie) — Core
+## Topics
+
+1. **Delivery and flow metrics** — why work gets stuck (dependencies, batch size, queues, context switching); cycle time, throughput, WIP, flow efficiency, the four DORA metrics.
+2. **Agile and Ways of Working** — Scrum, Kanban and hybrids chosen to fit the team; fewer ceremonies for their own sake, more autonomy and ownership.
+3. **People: coaching, facilitation, mentoring** — developing Scrum Masters, Tech Leads and Engineering Managers.
+4. **AI in SDLC and organizational change** — how AI changes software development and what it means for teams and leaders; change management.
+
+## Approach
+
+Start with facts (data and conversations); pick 2–3 high-impact areas; work shoulder to shoulder in daily work; aim for independence of the team.
+
+---
+
+## Agile Coaching Growth Wheel (interactive self-assessment)
+
+The Agile Coaching Growth Wheel is a competency model created by an international community of practitioners. Concept by Shannon Carter, Rickard Jones, Martin Lambert, Stacey Louie, Tom Reynolds, Rohit Ratan, Andre Rubin, Kubair Shirazee and Mark Summers, licensed under Creative Commons Attribution-ShareAlike 4.0 International (https://creativecommons.org/licenses/by-sa/4.0/). Original source: https://agilecoachinggrowthwheel.org
+
+This website provides an interactive version for self-assessment: 9 competencies (8 plus the Self-Mastery core), 21 subcompetencies, and a Domain Knowledge outer ring. Each subcompetency page describes behaviors, anti-patterns, reflection questions and maturity indicators.
+
+### 1. Self-Mastery — Core
 - **Self-Awareness (Samoświadomość)**: Recognizing personal patterns, biases, and triggers.
-  - PL: https://rafalkamieniarz.pl/kompetencja/self-mastery/samoswiadomosc
-  - EN: https://rafalkamieniarz.pl/en/competency/self-mastery/samoswiadomosc
+  - PL: https://rafalkamieniarz.com/kompetencja/self-mastery/samoswiadomosc
+  - EN: https://rafalkamieniarz.com/en/competency/self-mastery/samoswiadomosc
 - **Emotional Regulation (Regulacja emocji)**: Composure and grounded presence under stress.
-  - PL: https://rafalkamieniarz.pl/kompetencja/self-mastery/regulacja-emocji
-  - EN: https://rafalkamieniarz.pl/en/competency/self-mastery/regulacja-emocji
+  - PL: https://rafalkamieniarz.com/kompetencja/self-mastery/regulacja-emocji
+  - EN: https://rafalkamieniarz.com/en/competency/self-mastery/regulacja-emocji
 - **Continuous Growth (Ciągły rozwój)**: Reflective practice, supervision, ongoing development.
-  - PL: https://rafalkamieniarz.pl/kompetencja/self-mastery/ciagly-rozwoj
-  - EN: https://rafalkamieniarz.pl/en/competency/self-mastery/ciagly-rozwoj
+  - PL: https://rafalkamieniarz.com/kompetencja/self-mastery/ciagly-rozwoj
+  - EN: https://rafalkamieniarz.com/en/competency/self-mastery/ciagly-rozwoj
 
-### 2. Agile & Lean Practitioner (Praktyk Agile i Lean)
+### 2. Agile & Lean Practitioner
 - **Mindset (Agile/Lean Mindset)**: Embracing agility, empiricism, experimentation.
-  - PL: https://rafalkamieniarz.pl/kompetencja/agile-lean-practitioner/mindset
-  - EN: https://rafalkamieniarz.pl/en/competency/agile-lean-practitioner/mindset
+  - PL: https://rafalkamieniarz.com/kompetencja/agile-lean-practitioner/mindset
+  - EN: https://rafalkamieniarz.com/en/competency/agile-lean-practitioner/mindset
 - **Frameworks & Practices (Frameworki i praktyki)**: Scrum, Kanban, XP, flow metrics.
-  - PL: https://rafalkamieniarz.pl/kompetencja/agile-lean-practitioner/frameworki-i-praktyki
-  - EN: https://rafalkamieniarz.pl/en/competency/agile-lean-practitioner/frameworki-i-praktyki
+  - PL: https://rafalkamieniarz.com/kompetencja/agile-lean-practitioner/frameworki-i-praktyki
+  - EN: https://rafalkamieniarz.com/en/competency/agile-lean-practitioner/frameworki-i-praktyki
 
-### 3. Serving (Służenie)
+### 3. Serving
 - **Serving the Business (Biznes)**: Supporting Product Owners in value maximization.
-  - PL: https://rafalkamieniarz.pl/kompetencja/serving/biznes
-  - EN: https://rafalkamieniarz.pl/en/competency/serving/biznes
+  - PL: https://rafalkamieniarz.com/kompetencja/serving/biznes
+  - EN: https://rafalkamieniarz.com/en/competency/serving/biznes
 - **Serving the Team (Zespół)**: Team self-organization, impediment removal, focus protection.
-  - PL: https://rafalkamieniarz.pl/kompetencja/serving/zespol
-  - EN: https://rafalkamieniarz.pl/en/competency/serving/zespol
+  - PL: https://rafalkamieniarz.com/kompetencja/serving/zespol
+  - EN: https://rafalkamieniarz.com/en/competency/serving/zespol
 
-### 4. Coaching (Profesjonalny Coaching)
+### 4. Coaching
 - **Coaching Mindset**: Neutrality, resourcefulness, holding back premature advice.
-  - PL: https://rafalkamieniarz.pl/kompetencja/coaching/mindset
-  - EN: https://rafalkamieniarz.pl/en/competency/coaching/mindset
+  - PL: https://rafalkamieniarz.com/kompetencja/coaching/mindset
+  - EN: https://rafalkamieniarz.com/en/competency/coaching/mindset
 - **Coaching Skills (Umiejętności)**: Active listening, powerful questioning, contracting.
-  - PL: https://rafalkamieniarz.pl/kompetencja/coaching/umiejetnosci
-  - EN: https://rafalkamieniarz.pl/en/competency/coaching/umiejetnosci
+  - PL: https://rafalkamieniarz.com/kompetencja/coaching/umiejetnosci
+  - EN: https://rafalkamieniarz.com/en/competency/coaching/umiejetnosci
 
-### 5. Facilitating (Facylitacja)
+### 5. Facilitating
 - **Facilitation Mindset**: Content neutrality and trust in group intelligence.
-  - PL: https://rafalkamieniarz.pl/kompetencja/facilitating/mindset
-  - EN: https://rafalkamieniarz.pl/en/competency/facilitating/mindset
+  - PL: https://rafalkamieniarz.com/kompetencja/facilitating/mindset
+  - EN: https://rafalkamieniarz.com/en/competency/facilitating/mindset
 - **Facilitation Skills (Umiejętności)**: Workshop design, formats, conflict resolution.
-  - PL: https://rafalkamieniarz.pl/kompetencja/facilitating/umiejetnosci
-  - EN: https://rafalkamieniarz.pl/en/competency/facilitating/umiejetnosci
+  - PL: https://rafalkamieniarz.com/kompetencja/facilitating/umiejetnosci
+  - EN: https://rafalkamieniarz.com/en/competency/facilitating/umiejetnosci
 
-### 6. Guiding Learning (Prowadzenie Nauki i Rozwoju)
+### 6. Guiding Learning
 - **Teaching (Nauczanie)**: Experiential workshop design and interactive training.
-  - PL: https://rafalkamieniarz.pl/kompetencja/guiding-learning/teaching
-  - EN: https://rafalkamieniarz.pl/en/competency/guiding-learning/teaching
-- **Mentoring**: Structured guidance, sharing real-world battle-tested experience.
-  - PL: https://rafalkamieniarz.pl/kompetencja/guiding-learning/mentoring
-  - EN: https://rafalkamieniarz.pl/en/competency/guiding-learning/mentoring
+  - PL: https://rafalkamieniarz.com/kompetencja/guiding-learning/teaching
+  - EN: https://rafalkamieniarz.com/en/competency/guiding-learning/teaching
+- **Mentoring**: Structured guidance, sharing real-world experience.
+  - PL: https://rafalkamieniarz.com/kompetencja/guiding-learning/mentoring
+  - EN: https://rafalkamieniarz.com/en/competency/guiding-learning/mentoring
 - **Learning Mindset**: Culture of safe-to-fail experiments and blameless retrospection.
-  - PL: https://rafalkamieniarz.pl/kompetencja/guiding-learning/learning-mindset
-  - EN: https://rafalkamieniarz.pl/en/competency/guiding-learning/learning-mindset
+  - PL: https://rafalkamieniarz.com/kompetencja/guiding-learning/learning-mindset
+  - EN: https://rafalkamieniarz.com/en/competency/guiding-learning/learning-mindset
 
-### 7. Advising (Doradztwo)
+### 7. Advising
 - **Advising Mindset**: Explicit stance shifts and diagnostic humility.
-  - PL: https://rafalkamieniarz.pl/kompetencja/advising/mindset
-  - EN: https://rafalkamieniarz.pl/en/competency/advising/mindset
+  - PL: https://rafalkamieniarz.com/kompetencja/advising/mindset
+  - EN: https://rafalkamieniarz.com/en/competency/advising/mindset
 - **Advising Skills (Umiejętności)**: Contextual diagnosis, options analysis, decision support.
-  - PL: https://rafalkamieniarz.pl/kompetencja/advising/umiejetnosci
-  - EN: https://rafalkamieniarz.pl/en/competency/advising/umiejetnosci
+  - PL: https://rafalkamieniarz.com/kompetencja/advising/umiejetnosci
+  - EN: https://rafalkamieniarz.com/en/competency/advising/umiejetnosci
 
-### 8. Leading (Przywództwo)
+### 8. Leading
 - **Visionary (Wizja)**: Communicating compelling transformational intent.
-  - PL: https://rafalkamieniarz.pl/kompetencja/leading/visionary
-  - EN: https://rafalkamieniarz.pl/en/competency/leading/visionary
-- **Role Modeling**: Exemplifying agile values in daily habits and executive interactions.
-  - PL: https://rafalkamieniarz.pl/kompetencja/leading/role-modeling
-  - EN: https://rafalkamieniarz.pl/en/competency/leading/role-modeling
+  - PL: https://rafalkamieniarz.com/kompetencja/leading/visionary
+  - EN: https://rafalkamieniarz.com/en/competency/leading/visionary
+- **Role Modeling**: Exemplifying agile values in daily habits and interactions.
+  - PL: https://rafalkamieniarz.com/kompetencja/leading/role-modeling
+  - EN: https://rafalkamieniarz.com/en/competency/leading/role-modeling
 - **Leading for Growth**: Developing future leaders and unlocking autonomy.
-  - PL: https://rafalkamieniarz.pl/kompetencja/leading/leading-for-growth
-  - EN: https://rafalkamieniarz.pl/en/competency/leading/leading-for-growth
+  - PL: https://rafalkamieniarz.com/kompetencja/leading/leading-for-growth
+  - EN: https://rafalkamieniarz.com/en/competency/leading/leading-for-growth
 
-### 9. Transforming (Transformacja Organizacyjna)
+### 9. Transforming
 - **Organizational Design**: Value streams, cross-functional topology, decoupled structures.
-  - PL: https://rafalkamieniarz.pl/kompetencja/transforming/organizational-design
-  - EN: https://rafalkamieniarz.pl/en/competency/transforming/organizational-design
+  - PL: https://rafalkamieniarz.com/kompetencja/transforming/organizational-design
+  - EN: https://rafalkamieniarz.com/en/competency/transforming/organizational-design
 - **Organizational Change**: Systems thinking, change models, navigating organizational resistance.
-  - PL: https://rafalkamieniarz.pl/kompetencja/transforming/organizational-change
-  - EN: https://rafalkamieniarz.pl/en/competency/transforming/organizational-change
+  - PL: https://rafalkamieniarz.com/kompetencja/transforming/organizational-change
+  - EN: https://rafalkamieniarz.com/en/competency/transforming/organizational-change
 
 ### Outer Ring: Domain Knowledge (Wiedza Dziedzinowa)
 - Understanding industry specifics (FinTech, MedTech, eCommerce), architecture, CI/CD, and product discovery.
-  - PL: https://rafalkamieniarz.pl/kompetencja/domain-knowledge
-  - EN: https://rafalkamieniarz.pl/en/competency/domain-knowledge
+  - PL: https://rafalkamieniarz.com/kompetencja/domain-knowledge
+  - EN: https://rafalkamieniarz.com/en/competency/domain-knowledge
 
 ---
 
-## Contact & Inquiries
-- **E-mail**: kontakt@rafalkamieniarz.pl
-- **Location**: Poland (Remote & On-site consulting across the EU and globally)
+## Contact
+- **E-mail**: rafal@rafalkamieniarz.com
+- **LinkedIn**: https://www.linkedin.com/in/rafal-kamieniarz-warsaw
+- **Location**: Warsaw, Poland

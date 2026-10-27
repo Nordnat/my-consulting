@@ -9,31 +9,33 @@ import { Contact } from '@/components/home/contact';
 import { SiteFooter } from '@/components/home/site-footer';
 
 export const metadata: Metadata = {
-  title: 'Rafał Kamieniarz | Agile Delivery & Coaching Consulting',
+  title: 'Rafał Kamieniarz | Engineering Manager & Agile Leader',
   description:
-    'Strategic technology consulting, Agile delivery management, engineering leadership, and organizational transformation based on the Agile Coaching Growth Wheel framework.',
+    'Engineering Manager and Agile Leader with 8+ years at Samsung Electronics. Delivery and flow metrics (DORA), Ways of Working, coaching and leadership development, plus an interactive Agile Coaching Growth Wheel.',
   keywords: [
-    'Agile Consultant',
-    'Agile Delivery Manager',
+    'Engineering Manager',
+    'Agile Leader',
+    'Agile Delivery',
+    'Flow Metrics',
+    'DORA Metrics',
+    'Ways of Working',
     'Agile Coaching Growth Wheel',
-    'Engineering Leadership',
     'Scrum Master',
-    'Agile Transformation',
-    'Fractional Agile Lead',
-    'Software Delivery Optimization',
+    'AI in SDLC',
+    'Rafał Kamieniarz',
   ],
   alternates: {
-    canonical: 'https://rafalkamieniarz.pl/en',
+    canonical: 'https://rafalkamieniarz.com/en',
     languages: {
-      'pl-PL': 'https://rafalkamieniarz.pl/',
-      'en-US': 'https://rafalkamieniarz.pl/en',
+      'pl-PL': 'https://rafalkamieniarz.com/',
+      'en-US': 'https://rafalkamieniarz.com/en',
     },
   },
   openGraph: {
-    title: 'Rafał Kamieniarz | Agile Delivery & Coaching Consulting',
+    title: 'Rafał Kamieniarz | Engineering Manager & Agile Leader',
     description:
-      'Strategic technology consulting, Agile delivery management, and organizational transformation.',
-    url: 'https://rafalkamieniarz.pl/en',
+      'Engineering Manager and Agile Leader with 8+ years at Samsung Electronics. Delivery, flow metrics, Ways of Working, and developing leaders.',
+    url: 'https://rafalkamieniarz.com/en',
     locale: 'en_US',
     type: 'website',
   },

@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import { RotateCcw } from "lucide-react";
 import {
   COMPETENCIES,
   DEFAULT_RATINGS,
@@ -11,25 +13,114 @@ import { CompetencyPanel } from "./competency-panel";
 import { CompetencyWheel } from "./competency-wheel";
 import { RadarChart } from "./radar-chart";
 import { SiteHeader } from "./site-header";
-import { ReportCta } from "./report-cta";
+import { AssessmentSummaryDialog } from "./assessment-summary-dialog";
 import { SourceInfo } from "./source-info";
 import type { ReportPayload } from "./report-form";
 
 import { useLanguage } from "@/lib/i18n/language-context";
 import { COMPETENCIES_EN } from "@/lib/growth-wheel-data-en";
+import {
+  loadAuditRatings,
+  saveAuditRatings,
+  loadActiveCompetency,
+  saveActiveCompetency,
+  clearAllAuditCookies,
+} from "@/lib/growth-wheel-cookies";
 
 type GrowthWheelProps = {
+  initialRatings?: Record<CompetencyId, Rating> | null;
+  initialActiveId?: CompetencyId | null;
   onSubmitReport?: (payload: ReportPayload) => Promise<void> | void;
 };
 
-export function GrowthWheel({ onSubmitReport }: GrowthWheelProps) {
+function GrowthWheelContent({
+  initialRatings,
+  initialActiveId,
+}: GrowthWheelProps) {
   const { language, t } = useLanguage();
   const isEn = language === "en";
   const activeCompetencies = isEn ? COMPETENCIES_EN : COMPETENCIES;
 
-  const [ratings, setRatings] =
-    useState<Record<CompetencyId, Rating>>(DEFAULT_RATINGS);
-  const [activeId, setActiveId] = useState<CompetencyId>(activeCompetencies[0].id);
+  const searchParams = useSearchParams();
+  const focusParam =
+    searchParams.get("focus") ||
+    searchParams.get("area") ||
+    searchParams.get("kompetencja");
+
+  // Inicjalizacja ocen z cookies (lub initialRatings przekazanego z SSR, lub domyślnych)
+  const [ratings, setRatings] = useState<Record<CompetencyId, Rating>>(() => {
+    if (typeof window !== "undefined") {
+      const cookieSaved = loadAuditRatings();
+      if (cookieSaved) return cookieSaved;
+    }
+    return initialRatings ?? DEFAULT_RATINGS;
+  });
+
+  // Inicjalizacja aktywnej kompetencji: focusParam z URL ma pierwszeństwo,
+  // potem cookies/SSR, a ostatecznie pierwsza kompetencja z listy
+  const [activeId, setActiveId] = useState<CompetencyId>(() => {
+    if (focusParam) {
+      const match = activeCompetencies.find(
+        (c) => c.id === focusParam || c.href.endsWith(`/${focusParam}`)
+      );
+      if (match) return match.id;
+    }
+    if (initialActiveId) return initialActiveId;
+    if (typeof window !== "undefined") {
+      const cookieActive = loadActiveCompetency();
+      if (cookieActive) return cookieActive;
+    }
+    return activeCompetencies[0].id;
+  });
+
+  // Synchronizacja po montowaniu w przeglądarce (na wypadek przejść client-side)
+  useEffect(() => {
+    const cookieSaved = loadAuditRatings();
+    if (cookieSaved) {
+      setRatings(cookieSaved);
+    }
+    if (!focusParam) {
+      const cookieActive = loadActiveCompetency();
+      if (cookieActive) {
+        setActiveId(cookieActive);
+      }
+    }
+  }, [focusParam]);
+
+  // Gdy URL zawiera parametr focus (np. po kliknięciu "Oceń tę kompetencję w kole" na podstronie)
+  useEffect(() => {
+    if (focusParam) {
+      const match = activeCompetencies.find(
+        (c) => c.id === focusParam || c.href.endsWith(`/${focusParam}`)
+      );
+      if (match) {
+        setActiveId(match.id);
+        saveActiveCompetency(match.id);
+      }
+    }
+  }, [focusParam, activeCompetencies]);
+
+  const handleRatingChange = (id: CompetencyId, rating: Rating) => {
+    setRatings((prev) => {
+      const next = { ...prev, [id]: rating };
+      saveAuditRatings(next);
+      return next;
+    });
+  };
+
+  const handleSelectCompetency = (id: CompetencyId) => {
+    setActiveId(id);
+    saveActiveCompetency(id);
+  };
+
+  const handleResetRatings = () => {
+    setRatings(DEFAULT_RATINGS);
+    clearAllAuditCookies();
+  };
+
+  const isModified = Object.entries(ratings).some(
+    ([id, score]) => DEFAULT_RATINGS[id as CompetencyId] !== score
+  );
 
   const activeIndex = activeCompetencies.findIndex(
     (competency) => competency.id === activeId,
@@ -65,7 +156,7 @@ export function GrowthWheel({ onSubmitReport }: GrowthWheelProps) {
               <CompetencyWheel
                 ratings={ratings}
                 activeId={activeId}
-                onSelect={setActiveId}
+                onSelect={handleSelectCompetency}
               />
             </div>
           </div>
@@ -87,24 +178,38 @@ export function GrowthWheel({ onSubmitReport }: GrowthWheelProps) {
                 Agile Coaching Growth Wheel
               </h1>
             </div>
-            <dl className="flex gap-6 text-right">
-              <div>
-                <dt className="font-mono text-[11px] uppercase tracking-widest text-slate-500">
-                  {t.growthWheel.average}
-                </dt>
-                <dd className="font-mono text-lg font-semibold text-indigo-600">
-                  {average.toFixed(1)}
-                </dd>
-              </div>
-              <div className="hidden sm:block">
-                <dt className="font-mono text-[11px] uppercase tracking-widest text-slate-500">
-                  {t.growthWheel.areas}
-                </dt>
-                <dd className="font-mono text-lg font-semibold">
-                  {activeCompetencies.length}
-                </dd>
-              </div>
-            </dl>
+            <div className="flex items-center gap-6 text-right">
+              <dl className="flex gap-6">
+                <div>
+                  <dt className="font-mono text-[11px] uppercase tracking-widest text-slate-500">
+                    {t.growthWheel.average}
+                  </dt>
+                  <dd className="font-mono text-lg font-semibold text-indigo-600">
+                    {average.toFixed(1)}
+                  </dd>
+                </div>
+                <div className="hidden sm:block">
+                  <dt className="font-mono text-[11px] uppercase tracking-widest text-slate-500">
+                    {t.growthWheel.areas}
+                  </dt>
+                  <dd className="font-mono text-lg font-semibold">
+                    {activeCompetencies.length}
+                  </dd>
+                </div>
+              </dl>
+              {isModified && (
+                <button
+                  type="button"
+                  onClick={handleResetRatings}
+                  title={t.growthWheel.resetRatings}
+                  aria-label={t.growthWheel.resetRatings}
+                  className="inline-flex items-center gap-1.5 border border-slate-200 bg-white px-2.5 py-1.5 font-mono text-[11px] text-slate-600 hover:border-slate-400 hover:text-slate-950 transition-colors cursor-pointer"
+                >
+                  <RotateCcw className="size-3 text-slate-400" aria-hidden="true" />
+                  <span className="hidden sm:inline">{t.growthWheel.resetRatings}</span>
+                </button>
+              )}
+            </div>
           </header>
 
           <div className="flex-1 lg:min-h-0 lg:overflow-y-auto">
@@ -113,10 +218,8 @@ export function GrowthWheel({ onSubmitReport }: GrowthWheelProps) {
                 <RadarChart
                   ratings={ratings}
                   activeId={activeId}
-                  onSelect={setActiveId}
-                  onRatingChange={(id, rating) =>
-                    setRatings((prev) => ({ ...prev, [id]: rating }))
-                  }
+                  onSelect={handleSelectCompetency}
+                  onRatingChange={handleRatingChange}
                 />
                 <p className="text-center text-xs leading-relaxed text-slate-500 text-pretty">
                   {t.growthWheel.dragHint}
@@ -130,18 +233,28 @@ export function GrowthWheel({ onSubmitReport }: GrowthWheelProps) {
                 index={activeIndex}
                 total={activeCompetencies.length}
                 rating={ratings[activeId]}
-                onRatingChange={(rating) =>
-                  setRatings((prev) => ({ ...prev, [activeId]: rating }))
-                }
+                onRatingChange={(rating) => handleRatingChange(activeId, rating)}
               />
             </div>
           </div>
 
-          <div className="sticky bottom-0 border-t border-slate-200 bg-white px-6 py-3 md:px-10">
-            <ReportCta ratings={ratings} average={average} onSubmitReport={onSubmitReport} />
+          <div className="sticky bottom-0 border-t border-slate-200 bg-white px-6 py-3.5 md:px-10 z-10 shadow-xs">
+            <AssessmentSummaryDialog
+              ratings={ratings}
+              average={average}
+              competencies={activeCompetencies}
+            />
           </div>
         </section>
       </main>
     </div>
+  );
+}
+
+export function GrowthWheel(props: GrowthWheelProps) {
+  return (
+    <Suspense fallback={<div className="flex min-h-dvh flex-col bg-white" />}>
+      <GrowthWheelContent {...props} />
+    </Suspense>
   );
 }

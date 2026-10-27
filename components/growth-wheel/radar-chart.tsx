@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useRef, useState, type KeyboardEvent, type MouseEvent, type PointerEvent } from 'react'
+import { useId, useRef, useState, useEffect, type KeyboardEvent, type MouseEvent, type PointerEvent } from 'react'
 import {
   CORE_COMPETENCY,
   WHEEL_COMPETENCIES,
@@ -101,10 +101,24 @@ function keyToRating(key: string, current: Rating): Rating | null {
   switch (key) {
     case 'ArrowUp':
     case 'ArrowRight':
+    case '+':
+    case '=':
       return toRating(current + 1)
     case 'ArrowDown':
     case 'ArrowLeft':
+    case '-':
+    case '_':
       return toRating(current - 1)
+    case '1':
+      return 1
+    case '2':
+      return 2
+    case '3':
+      return 3
+    case '4':
+      return 4
+    case '5':
+      return 5
     case 'Home':
       return 1
     case 'End':
@@ -124,6 +138,8 @@ type RadarChartProps = {
 export function RadarChart({ ratings, activeId, onSelect, onRatingChange }: RadarChartProps) {
   const uid = useId()
   const svgRef = useRef<SVGSVGElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const sliderRefs = useRef<Record<string, SVGGElement | null>>({})
   const [draggingId, setDraggingState] = useState<CompetencyId | null>(null)
   const draggingRef = useRef<CompetencyId | null>(null)
   const setDraggingId = (id: CompetencyId | null) => {
@@ -136,6 +152,36 @@ export function RadarChart({ ratings, activeId, onSelect, onRatingChange }: Rada
   const coreActive = activeId === coreId
   const coreRating = ratings[coreId]
 
+  function commit(id: CompetencyId, rating: Rating) {
+    if (ratings[id] !== rating) onRatingChange(id, rating)
+  }
+
+  // Obsługa klawiatury (strzałki ↑/↓ lub ←/→ oraz cyfry 1–5) na poziomie całego widoku
+  useEffect(() => {
+    function handleGlobalKeyDown(event: globalThis.KeyboardEvent) {
+      // Ignorujemy skróty, jeśli użytkownik pisze w polu tekstowym lub oknie dialogowym
+      const target = event.target as HTMLElement | null
+      const isInput =
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.isContentEditable ||
+          target.getAttribute('role') === 'dialog' ||
+          target.closest('[role="dialog"]') !== null)
+
+      if (isInput) return
+
+      const next = keyToRating(event.key, ratings[activeId])
+      if (next !== null) {
+        event.preventDefault()
+        commit(activeId, next)
+      }
+    }
+
+    window.addEventListener('keydown', handleGlobalKeyDown)
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown)
+  }, [activeId, ratings])
+
   function toSvgPoint(event: PointerEvent) {
     const rect = svgRef.current?.getBoundingClientRect()
     if (!rect) return null
@@ -144,10 +190,6 @@ export function RadarChart({ ratings, activeId, onSelect, onRatingChange }: Rada
       dx: (event.clientX - rect.left) * scale - CENTER,
       dy: (event.clientY - rect.top) * scale - CENTER,
     }
-  }
-
-  function commit(id: CompetencyId, rating: Rating) {
-    if (ratings[id] !== rating) onRatingChange(id, rating)
   }
 
   function ratingFromAxis(event: PointerEvent, index: number) {
@@ -170,7 +212,12 @@ export function RadarChart({ ratings, activeId, onSelect, onRatingChange }: Rada
 
   function startDrag(event: PointerEvent<SVGElement>, id: CompetencyId) {
     event.preventDefault()
-    event.currentTarget.setPointerCapture(event.pointerId)
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId)
+      event.currentTarget.focus?.()
+    } catch {
+      // ignore
+    }
     setDraggingId(id)
     onSelect(id)
   }
@@ -193,10 +240,18 @@ export function RadarChart({ ratings, activeId, onSelect, onRatingChange }: Rada
   function handleNavigate(event: MouseEvent, id: CompetencyId) {
     event.preventDefault()
     onSelect(id)
+    sliderRefs.current[id]?.focus?.()
   }
 
   return (
-    <div className="relative">
+    <div
+      ref={containerRef}
+      tabIndex={0}
+      role="region"
+      aria-label="Wykres radarowy kompetencji: użyj strzałek ↑/↓ lub cyfr 1–5, aby zmienić ocenę"
+      className="relative focus-visible:outline-2 focus-visible:outline-indigo-600 focus-visible:outline-offset-4 outline-none"
+      onKeyDown={(event) => handleKey(event, activeId)}
+    >
       <div className="absolute top-2 right-2 z-10">
         <WheelLicenseInfo side="bottom" align="end" />
       </div>
@@ -330,6 +385,9 @@ export function RadarChart({ ratings, activeId, onSelect, onRatingChange }: Rada
         return (
           <g
             key={competency.id}
+            ref={(el) => {
+              sliderRefs.current[competency.id] = el
+            }}
             role="slider"
             tabIndex={0}
             aria-label={`${competency.name}: ocena`}
@@ -428,6 +486,9 @@ export function RadarChart({ ratings, activeId, onSelect, onRatingChange }: Rada
       </a>
 
       <g
+        ref={(el) => {
+          sliderRefs.current[coreId] = el
+        }}
         role="slider"
         tabIndex={0}
         aria-label={`${CORE_COMPETENCY.name}: ocena`}

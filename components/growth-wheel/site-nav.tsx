@@ -89,7 +89,7 @@ export function SiteNav() {
   const domainItem = isEn ? DOMAIN_KNOWLEDGE_EN : DOMAIN_KNOWLEDGE
 
   const sectionLinks = [
-    { label: t.nav.services, href: `${homeHref}#uslugi` },
+    { label: t.nav.services, href: `${homeHref}#ekspertyza` },
     { label: t.nav.about, href: `${homeHref}#o-mnie` },
     { label: t.nav.contact, href: `${homeHref}#kontakt` },
   ]

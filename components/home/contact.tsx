@@ -3,6 +3,7 @@
 import { ArrowUpRight } from 'lucide-react'
 import { SITE } from '@/lib/site-config'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { ContactDialog } from './contact-dialog'
 
 export function Contact() {
   const { language, t } = useLanguage()
@@ -22,13 +23,7 @@ export function Contact() {
           </p>
         </div>
         <div className="flex flex-col gap-4">
-          <a
-            href={`mailto:${SITE.email}`}
-            className="group inline-flex h-14 w-fit items-center gap-3 border-b-2 border-slate-950 text-lg font-medium transition-colors hover:border-indigo-600 hover:text-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-600 md:text-xl"
-          >
-            {SITE.email}
-            <ArrowUpRight className="size-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
-          </a>
+          <ContactDialog />
           <a
             href={SITE.linkedin}
             target="_blank"

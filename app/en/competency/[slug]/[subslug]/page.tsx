@@ -13,6 +13,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { SiteHeader } from '@/components/growth-wheel/site-header';
+import { AcgwLicenseFooter } from '@/components/growth-wheel/acgw-license-footer';
 import { buttonVariants } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -51,16 +52,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${data.subCompetency.name} (${data.competency.name}) — Agile Coaching Growth Wheel`,
     description: detail?.overview || data.subCompetency.description,
     alternates: {
-      canonical: `https://rafalkamieniarz.pl/en/competency/${slug}/${subslug}`,
+      canonical: `https://rafalkamieniarz.com/en/competency/${slug}/${subslug}`,
       languages: {
-        'pl-PL': `https://rafalkamieniarz.pl/kompetencja/${slug}/${subslug}`,
-        'en-US': `https://rafalkamieniarz.pl/en/competency/${slug}/${subslug}`,
+        'pl-PL': `https://rafalkamieniarz.com/kompetencja/${slug}/${subslug}`,
+        'en-US': `https://rafalkamieniarz.com/en/competency/${slug}/${subslug}`,
       },
     },
     openGraph: {
       title: `${data.subCompetency.name} | ${data.competency.name}`,
       description: detail?.overview || data.subCompetency.description,
-      url: `https://rafalkamieniarz.pl/en/competency/${slug}/${subslug}`,
+      url: `https://rafalkamieniarz.com/en/competency/${slug}/${subslug}`,
       locale: 'en_US',
     },
   };
@@ -90,13 +91,13 @@ export default async function EnglishSubCompetencyPage({ params }: Props) {
       '@type': 'Person',
       name: 'Rafał Kamieniarz',
       jobTitle: 'Agile Delivery Consultant & Coach',
-      url: 'https://rafalkamieniarz.pl/en',
+      url: 'https://rafalkamieniarz.com/en',
     },
     about: {
       '@type': 'DefinedTerm',
       name: subCompetency.name,
       description: detail?.overview || subCompetency.description,
-      inDefinedTermSet: `https://rafalkamieniarz.pl/en/competency/${competency.id}`,
+      inDefinedTermSet: `https://rafalkamieniarz.com/en/competency/${competency.id}`,
     },
   };
 
@@ -150,7 +151,7 @@ export default async function EnglishSubCompetencyPage({ params }: Props) {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href="/en/agile-growth-wheel"
+              href={`/en/agile-growth-wheel?focus=${competency.id}`}
               className={buttonVariants({ size: 'sm', className: 'bg-indigo-600 hover:bg-indigo-700 text-white' })}
             >
               <Compass className="mr-2 size-4" />
@@ -324,12 +325,14 @@ export default async function EnglishSubCompetencyPage({ params }: Props) {
           </Link>
 
           <Link
-            href="/en/agile-growth-wheel"
+            href={`/en/agile-growth-wheel?focus=${competency.id}`}
             className={buttonVariants({ size: 'sm', className: 'bg-indigo-600 hover:bg-indigo-700 text-white' })}
           >
             Open Growth Wheel Assessment →
           </Link>
         </nav>
+
+        <AcgwLicenseFooter lang="en" />
       </main>
     </div>
   );

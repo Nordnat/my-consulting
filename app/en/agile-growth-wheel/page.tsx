@@ -1,6 +1,12 @@
 import type { Metadata } from 'next';
-import { SiteHeader } from '@/components/growth-wheel/site-header';
+import { cookies } from 'next/headers';
 import { GrowthWheel } from '@/components/growth-wheel/growth-wheel';
+import {
+  AGW_RATINGS_COOKIE,
+  AGW_ACTIVE_COOKIE,
+  parseRatingsCookie,
+  parseActiveCompetencyCookie,
+} from '@/lib/growth-wheel-cookies';
 
 export const metadata: Metadata = {
   title: 'Agile Coaching Growth Wheel | Interactive Competency Framework & Self-Assessment',
@@ -18,29 +24,26 @@ export const metadata: Metadata = {
     'Guiding Learning',
   ],
   alternates: {
-    canonical: 'https://rafalkamieniarz.pl/en/agile-growth-wheel',
+    canonical: 'https://rafalkamieniarz.com/en/agile-growth-wheel',
     languages: {
-      'pl-PL': 'https://rafalkamieniarz.pl/metodyki-zwinne/agile-growth-wheel',
-      'en-US': 'https://rafalkamieniarz.pl/en/agile-growth-wheel',
+      'pl-PL': 'https://rafalkamieniarz.com/metodyki-zwinne/agile-growth-wheel',
+      'en-US': 'https://rafalkamieniarz.com/en/agile-growth-wheel',
     },
   },
   openGraph: {
     title: 'Agile Coaching Growth Wheel | Interactive Framework & Assessment',
     description:
       'Interactive radar wheel visualization for the 9 competencies of the Agile Coaching Growth Wheel.',
-    url: 'https://rafalkamieniarz.pl/en/agile-growth-wheel',
+    url: 'https://rafalkamieniarz.com/en/agile-growth-wheel',
     locale: 'en_US',
     type: 'website',
   },
 };
 
-export default function EnglishAgileGrowthWheelPage() {
-  return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
-      <SiteHeader />
-      <main className="flex-1">
-        <GrowthWheel />
-      </main>
-    </div>
-  );
+export default async function EnglishAgileGrowthWheelPage() {
+  const cookieStore = await cookies();
+  const initialRatings = parseRatingsCookie(cookieStore.get(AGW_RATINGS_COOKIE)?.value);
+  const initialActiveId = parseActiveCompetencyCookie(cookieStore.get(AGW_ACTIVE_COOKIE)?.value);
+
+  return <GrowthWheel initialRatings={initialRatings} initialActiveId={initialActiveId} />;
 }

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ChevronRight, Compass, Sparkles } from 'lucide-react';
 import { SiteHeader } from '@/components/growth-wheel/site-header';
+import { AcgwLicenseFooter } from '@/components/growth-wheel/acgw-license-footer';
 import { buttonVariants } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -13,6 +14,8 @@ import {
   type CompetencyId,
   type Rating,
 } from '@/lib/growth-wheel-data-en';
+
+const ACCENT_COLOR = '#4f46e5'
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -35,16 +38,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${competency.name} — Agile Coaching Growth Wheel Competency`,
     description: `${competency.description} Explore subcompetencies, maturity levels, and development guide.`,
     alternates: {
-      canonical: `https://rafalkamieniarz.pl/en/competency/${slug}`,
+      canonical: `https://rafalkamieniarz.com/en/competency/${slug}`,
       languages: {
-        'pl-PL': `https://rafalkamieniarz.pl/kompetencja/${slug}`,
-        'en-US': `https://rafalkamieniarz.pl/en/competency/${slug}`,
+        'pl-PL': `https://rafalkamieniarz.com/kompetencja/${slug}`,
+        'en-US': `https://rafalkamieniarz.com/en/competency/${slug}`,
       },
     },
     openGraph: {
       title: `${competency.name} | Agile Coaching Growth Wheel`,
       description: competency.description,
-      url: `https://rafalkamieniarz.pl/en/competency/${slug}`,
+      url: `https://rafalkamieniarz.com/en/competency/${slug}`,
       locale: 'en_US',
     },
   };
@@ -72,13 +75,13 @@ export default async function EnglishCompetencyDetailPage({ params }: Props) {
       '@type': 'Person',
       name: 'Rafał Kamieniarz',
       jobTitle: 'Agile Delivery Consultant & Coach',
-      url: 'https://rafalkamieniarz.pl/en',
+      url: 'https://rafalkamieniarz.com/en',
     },
     about: {
       '@type': 'DefinedTerm',
       name: competency.name,
       description: competency.description,
-      inDefinedTermSet: 'https://rafalkamieniarz.pl/en/agile-growth-wheel',
+      inDefinedTermSet: 'https://rafalkamieniarz.com/en/agile-growth-wheel',
     },
   };
 
@@ -105,7 +108,7 @@ export default async function EnglishCompetencyDetailPage({ params }: Props) {
         <header className="relative mb-12 overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-8 shadow-sm md:p-12">
           <div
             className="absolute -right-20 -top-20 h-72 w-72 rounded-full opacity-10 blur-3xl pointer-events-none"
-            style={{ backgroundColor: competency.color }}
+            style={{ backgroundColor: ACCENT_COLOR }}
           />
 
           <div className="relative">
@@ -115,7 +118,7 @@ export default async function EnglishCompetencyDetailPage({ params }: Props) {
               </Badge>
               <span
                 className="inline-flex items-center gap-1.5 rounded-full px-3 py-0.5 text-xs font-medium text-white shadow-xs"
-                style={{ backgroundColor: competency.color }}
+                style={{ backgroundColor: ACCENT_COLOR }}
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
                 {competency.subCompetencies.length} subcompetencies
@@ -132,11 +135,11 @@ export default async function EnglishCompetencyDetailPage({ params }: Props) {
 
             <div className="mt-6 flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100">
               <Link
-                href="/en/agile-growth-wheel"
+                href={`/en/agile-growth-wheel?focus=${competency.id}`}
                 className={buttonVariants({ variant: 'default', size: 'sm', className: 'gap-2' })}
               >
                 <Compass className="h-4 w-4" />
-                Back to Interactive Wheel
+                Rate this Competency on Wheel
               </Link>
               <Link
                 href="#subcompetencies"
@@ -168,7 +171,7 @@ export default async function EnglishCompetencyDetailPage({ params }: Props) {
           <div className="grid gap-6 md:grid-cols-2">
             {competency.subCompetencies.map((sub, sIdx) => (
               <article
-                key={sub.id}
+                key={sub.href}
                 className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-6 shadow-xs transition-all hover:border-slate-300 hover:shadow-md"
               >
                 <div>
@@ -178,7 +181,7 @@ export default async function EnglishCompetencyDetailPage({ params }: Props) {
                     </span>
                     <span
                       className="h-2 w-8 rounded-full"
-                      style={{ backgroundColor: competency.color }}
+                      style={{ backgroundColor: ACCENT_COLOR }}
                     />
                   </div>
 
@@ -197,7 +200,7 @@ export default async function EnglishCompetencyDetailPage({ params }: Props) {
                     5 maturity levels (1–5)
                   </span>
                   <Link
-                    href={`/en/competency/${competency.id}/${sub.id}`}
+                    href={sub.href}
                     className="inline-flex items-center gap-1 text-sm font-semibold text-slate-900 hover:text-primary transition-colors"
                   >
                     Details <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -237,7 +240,7 @@ export default async function EnglishCompetencyDetailPage({ params }: Props) {
                     </span>
                     <span
                       className="h-1.5 w-1.5 rounded-full"
-                      style={{ backgroundColor: competency.color }}
+                      style={{ backgroundColor: ACCENT_COLOR }}
                     />
                   </div>
                   <h4 className="text-sm font-bold text-slate-900">
@@ -277,6 +280,8 @@ export default async function EnglishCompetencyDetailPage({ params }: Props) {
             </Link>
           ) : <div />}
         </footer>
+
+        <AcgwLicenseFooter lang="en" />
       </main>
     </div>
   );

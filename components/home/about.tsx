@@ -5,6 +5,7 @@ import { useLanguage } from '@/lib/i18n/language-context'
 import { SectionHeading } from './section-heading'
 
 const FOCUS_AREAS_PL = [
+  'Zarządzanie zespołami inżynierskimi',
   'Agile delivery',
   'Metryki przepływu',
   'DORA',
@@ -16,6 +17,7 @@ const FOCUS_AREAS_PL = [
 ] as const
 
 const FOCUS_AREAS_EN = [
+  'Engineering Team Management',
   'Agile Delivery',
   'Flow Metrics',
   'DORA Metrics',
@@ -165,4 +167,3 @@ export function About() {
     </section>
   )
 }
-

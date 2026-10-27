@@ -4,6 +4,7 @@ import { Slider } from '@/components/ui/slider'
 import { LEVEL_NAMES, type Competency, type Rating } from '@/lib/growth-wheel-data'
 import { LEVEL_NAMES_EN } from '@/lib/growth-wheel-data-en'
 import { useLanguage } from '@/lib/i18n/language-context'
+import { FEATURES } from '@/lib/site-config'
 import { cn } from '@/lib/utils'
 import { RecommendedResources } from './recommended-resources'
 
@@ -104,7 +105,7 @@ export function CompetencyPanel({ competency, index, total, rating, onRatingChan
         </div>
       </section>
 
-      <RecommendedResources resources={competency.resources} />
+      {FEATURES.resources && <RecommendedResources resources={competency.resources} />}
     </div>
   )
 }

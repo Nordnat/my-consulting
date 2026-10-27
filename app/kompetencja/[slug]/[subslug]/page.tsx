@@ -13,6 +13,7 @@ import {
   TrendingUp,
 } from 'lucide-react'
 import { SiteHeader } from '@/components/growth-wheel/site-header'
+import { AcgwLicenseFooter } from '@/components/growth-wheel/acgw-license-footer'
 import { buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
@@ -110,7 +111,7 @@ export default async function SubCompetencyPage({ params }: Props) {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href="/"
+              href={`/metodyki-zwinne/agile-growth-wheel?focus=${competency.id}`}
               className={buttonVariants({ size: 'sm', className: 'bg-indigo-600 hover:bg-indigo-700 text-white' })}
             >
               <Compass className="mr-2 size-4" />
@@ -284,12 +285,14 @@ export default async function SubCompetencyPage({ params }: Props) {
           </Link>
 
           <Link
-            href="/"
+            href={`/metodyki-zwinne/agile-growth-wheel?focus=${competency.id}`}
             className={buttonVariants({ size: 'sm', className: 'bg-indigo-600 hover:bg-indigo-700 text-white' })}
           >
             Otwórz koło audytu →
           </Link>
         </nav>
+
+        <AcgwLicenseFooter lang="pl" />
       </main>
     </div>
   )
