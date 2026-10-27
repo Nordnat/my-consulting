@@ -83,17 +83,44 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  # 3. Podsumowanie publikacji (automatyczny deploy SSH wyłączony)
-  deploy-notice:
-    name: Deployment Ready Notice
+  # 3. Automatyczne wdrożenie na serwer produkcyjny VPS przez SSH
+  deploy-production:
+    name: Deploy to Production Server
     needs: docker-publish
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
-      - name: Print image details
-        run: |
-          echo "=========================================================="
-          echo " Obraz Docker zostal pomyslnie zbudowany i opublikowany!"
-          echo " Obraz: ghcr.io/${{ github.repository }}:latest"
-          echo " Automatyczny SSH deploy jest tymczasowo wylaczony."
-          echo "=========================================================="
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Copy docker-compose to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOSTING_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          source: 'docker-compose.yml'
+          target: '/docker/rafalkamieniarz/'
+          overwrite: true
+
+      - name: Execute deployment commands via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOSTING_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            echo "=== Deployment started on VPS ==="
+            cd /docker/rafalkamieniarz
+
+            echo "Pobieranie najnowszego obrazu Docker..."
+            docker compose pull
+
+            echo "Przeładowanie kontenera produkcyjnego..."
+            docker compose up -d --remove-orphans
+
+            echo "Status uruchomionego kontenera:"
+            docker ps --filter "name=rafalkamieniarz-web"
+            echo "=== Deployment finished successfully! ==="

@@ -18,13 +18,21 @@ services:
       - SMTP_PASS=${SMTP_PASS:-}
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=coachflow_proxy"
       - "traefik.http.routers.rafalkamieniarz.rule=Host(`rafalkamieniarz.com`) || Host(`www.rafalkamieniarz.com`)"
       - "traefik.http.routers.rafalkamieniarz.entrypoints=websecure"
       - "traefik.http.routers.rafalkamieniarz.tls=true"
-      - "traefik.http.routers.rafalkamieniarz.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.rafalkamieniarz.tls.certresolver=mytlschallenge"
       - "traefik.http.services.rafalkamieniarz.loadbalancer.server.port=3000"
+    networks:
+      - proxy
     env_file:
       - path: .env
         required: false
       - path: .env.local
         required: false
+
+networks:
+  proxy:
+    external: true
+    name: coachflow_proxy
