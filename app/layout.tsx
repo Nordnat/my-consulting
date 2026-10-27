@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: '%s | Rafał Kamieniarz',
   },
   description:
-    'Engineering Manager i Agile Leader z ponad 8-letnim doświadczeniem w Samsung Electronics. Delivery i metryki przepływu (DORA), Ways of Working, coaching i rozwój liderów oraz interaktywna mapa kompetencji Agile Coaching Growth Wheel.',
+    'Agile Leader i Engineering Manager z ponad 8-letnim doświadczeniem w Samsung Electronics. Delivery i metryki przepływu (DORA), Ways of Working, coaching i rozwój liderów oraz interaktywna mapa kompetencji Agile Coaching Growth Wheel.',
   keywords: [
     'Agile Delivery',
     'Agile Coaching',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Rafał Kamieniarz — Agile Leader & Engineering Manager',
     description:
-      'Engineering Manager i Agile Leader z ponad 8-letnim doświadczeniem w Samsung Electronics. Delivery, metryki przepływu i DORA, Ways of Working oraz rozwój liderów.',
+      'Agile Leader i Engineering Manager z ponad 8-letnim doświadczeniem w Samsung Electronics. Delivery, metryki przepływu i DORA, Ways of Working oraz rozwój liderów.',
     url: 'https://rafalkamieniarz.com',
     siteName: 'Rafał Kamieniarz',
     locale: 'pl_PL',

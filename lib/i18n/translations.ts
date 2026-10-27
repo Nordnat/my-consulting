@@ -4,7 +4,7 @@ export const TRANSLATIONS = {
   pl: {
     nav: {
       brand: 'Rafał Kamieniarz',
-      tagline: 'Agile Delivery · Engineering Manager',
+      tagline: 'Agile Leader · Engineering Manager',
       start: 'Start',
       methods: 'Metodyki zwinne',
       models: 'Modele kompetencji',
@@ -210,7 +210,7 @@ export const TRANSLATIONS = {
   en: {
     nav: {
       brand: 'Rafał Kamieniarz',
-      tagline: 'Agile Delivery · Engineering Manager',
+      tagline: 'Agile Leader · Engineering Manager',
       start: 'Home',
       methods: 'Agile Methodologies',
       models: 'Competency Models',

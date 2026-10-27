@@ -119,7 +119,7 @@ jobs:
             docker compose pull
 
             echo "Przeładowanie kontenera produkcyjnego..."
-            docker compose up -d --remove-orphans
+            docker compose up -d --force-recreate --remove-orphans
 
             echo "Status uruchomionego kontenera:"
             docker ps --filter "name=rafalkamieniarz-web"
