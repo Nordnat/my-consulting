@@ -12,7 +12,7 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* ./
+COPY package.json pnpm-lock.yaml* ./
 RUN pnpm install
 
 # 3. Budowanie aplikacji Next.js
