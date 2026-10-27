@@ -1,13 +1,10 @@
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: rafalkamieniarz-web:latest
+    image: ghcr.io/nordnat/my-consulting:latest
     container_name: rafalkamieniarz-web
     restart: unless-stopped
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     environment:
       - NODE_ENV=production
       - PORT=3000
@@ -19,6 +16,13 @@ services:
       - SMTP_PORT=${SMTP_PORT:-}
       - SMTP_USER=${SMTP_USER:-}
       - SMTP_PASS=${SMTP_PASS:-}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rafalkamieniarz.rule=Host(`rafalkamieniarz.com`) || Host(`www.rafalkamieniarz.com`)"
+      - "traefik.http.routers.rafalkamieniarz.entrypoints=websecure"
+      - "traefik.http.routers.rafalkamieniarz.tls=true"
+      - "traefik.http.routers.rafalkamieniarz.tls.certresolver=letsencrypt"
+      - "traefik.http.services.rafalkamieniarz.loadbalancer.server.port=3000"
     env_file:
       - path: .env
         required: false
