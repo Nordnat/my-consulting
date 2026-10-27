@@ -2,7 +2,9 @@
 
 # 1. Obraz bazowy z Node.js i pnpm
 FROM node:20-alpine AS base
-RUN corepack enable && corepack prepare pnpm@12.3.4 --activate
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable && corepack prepare pnpm@9.15.4 --activate
 WORKDIR /app
 
 # 2. Instalacja zależności
@@ -11,7 +13,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* ./
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 # 3. Budowanie aplikacji Next.js
 FROM base AS builder
