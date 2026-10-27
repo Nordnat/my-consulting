@@ -18,7 +18,7 @@ export const TRANSLATIONS = {
     },
     home: {
       hero: {
-        badge: 'Engineering Manager · Agile Leader',
+        badge: 'Agile Leader · Engineering Manager',
         title: 'Zwinność, którą widać w wynikach, a nie na slajdach.',
         description:
           'Ponad 8 lat w Samsungu, od kodu po zarządzanie zespołami, nauczyło mnie jednego: przewidywalne delivery nie zależy od wybranego frameworka, tylko od danych, praktyk inżynierskich i zaufania w zespole.',
@@ -98,7 +98,7 @@ export const TRANSLATIONS = {
       },
       about: {
         eyebrow: 'O mnie',
-        lead: 'Engineering Manager i Agile Leader. Zarządzanie zespołami inżynierskimi i ponad 8 lat w Samsung Electronics: od programisty, przez Scrum Mastera, po prowadzenie zespołów w Samsung Ads.',
+        lead: 'Agile Leader i Engineering Manager. Zarządzanie zespołami inżynierskimi i ponad 8 lat w Samsung Electronics: od programisty, przez Scrum Mastera, po prowadzenie zespołów w Samsung Ads.',
         bio: 'Znam delivery z obu stron: pisałem kod, prowadziłem ceremonie i odpowiadałem za roadmapę zespołów pracujących między Warszawą a Doliną Krzemową. Dziś skupiam się na zarządzaniu zespołami inżynierskimi, analizie tego, gdzie zespoły naprawdę tracą czas i budowaniu środowiska, w którym same potrafią to poprawiać.',
         areasTitle: 'Tematy, które mnie interesują',
         experienceTitle: 'Doświadczenie',
@@ -224,7 +224,7 @@ export const TRANSLATIONS = {
     },
     home: {
       hero: {
-        badge: 'Engineering Manager · Agile Leader',
+        badge: 'Agile Leader · Engineering Manager',
         title: 'Agility proven in tangible outcomes, not slide decks.',
         description:
           'Over 8 years at Samsung, from code to leading teams, taught me one thing: predictable delivery does not depend on the framework you pick, but on data, engineering practices, and trust within the team.',
@@ -304,7 +304,7 @@ export const TRANSLATIONS = {
       },
       about: {
         eyebrow: 'About Me',
-        lead: 'Engineering Manager & Agile Leader. Engineering team management and 8+ years at Samsung Electronics: from software engineer, to Scrum Master, to leading engineering squads in Samsung Ads.',
+        lead: 'Agile Leader & Engineering Manager. Engineering team management and 8+ years at Samsung Electronics: from software engineer, to Scrum Master, to leading engineering squads in Samsung Ads.',
         bio: "I know delivery from both sides of the table: writing production code, facilitating ceremonies, and owning roadmaps across distributed teams spanning Warsaw and Silicon Valley. Today I'm focused on engineering team management, identifying where teams really lose time, and building an environment in which they can improve it themselves.",
         areasTitle: 'Topics I Care About',
         experienceTitle: 'Track Record',

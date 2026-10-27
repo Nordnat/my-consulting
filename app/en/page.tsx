@@ -9,7 +9,7 @@ import { Contact } from '@/components/home/contact';
 import { SiteFooter } from '@/components/home/site-footer';
 
 export const metadata: Metadata = {
-  title: 'Rafał Kamieniarz | Engineering Manager & Agile Leader',
+  title: 'Rafał Kamieniarz | Agile Leader & Engineering Manager',
   description:
     'Engineering Manager and Agile Leader with 8+ years at Samsung Electronics. Delivery and flow metrics (DORA), Ways of Working, coaching and leadership development, plus an interactive Agile Coaching Growth Wheel.',
   keywords: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Rafał Kamieniarz | Engineering Manager & Agile Leader',
+    title: 'Rafał Kamieniarz | Agile Leader & Engineering Manager',
     description:
       'Engineering Manager and Agile Leader with 8+ years at Samsung Electronics. Delivery, flow metrics, Ways of Working, and developing leaders.',
     url: 'https://rafalkamieniarz.com/en',

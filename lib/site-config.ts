@@ -1,6 +1,6 @@
 export const SITE = {
   brand: 'Rafał Kamieniarz',
-  tagline: 'Agile Delivery · Engineering Manager',
+  tagline: 'Agile Leader · Engineering Manager',
   domain: 'rafalkamieniarz.com',
   url: 'https://rafalkamieniarz.com',
   email: 'rafal@rafalkamieniarz.com',

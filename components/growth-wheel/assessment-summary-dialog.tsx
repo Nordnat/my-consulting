@@ -798,7 +798,7 @@ export function AssessmentSummaryDialog({
               <div className="flex items-start justify-between border-b-2 border-indigo-600 pb-5">
                 <div>
                   <p className="text-[11px] font-mono uppercase tracking-widest text-indigo-700 font-semibold">
-                    Rafał Kamieniarz · Engineering Manager & Agile Leader
+                    Rafał Kamieniarz · Agile Leader & Engineering Manager
                   </p>
                   <h1 className="text-2xl font-bold tracking-tight text-slate-950 mt-1">
                     Agile Coaching Growth Wheel

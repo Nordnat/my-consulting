@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({ subsets: ['latin', 'latin-ext'], variable: '--fon
 export const metadata: Metadata = {
   metadataBase: new URL('https://rafalkamieniarz.com'),
   title: {
-    default: 'Rafał Kamieniarz — Engineering Manager & Agile Leader',
+    default: 'Rafał Kamieniarz — Agile Leader & Engineering Manager',
     template: '%s | Rafał Kamieniarz',
   },
   description:
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Rafał Kamieniarz — Engineering Manager & Agile Leader',
+    title: 'Rafał Kamieniarz — Agile Leader & Engineering Manager',
     description:
       'Engineering Manager i Agile Leader z ponad 8-letnim doświadczeniem w Samsung Electronics. Delivery, metryki przepływu i DORA, Ways of Working oraz rozwój liderów.',
     url: 'https://rafalkamieniarz.com',

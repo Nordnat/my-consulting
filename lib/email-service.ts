@@ -244,8 +244,17 @@ export async function sendContactEmail({
     }
   }
 
-  // 4. Tryb lokalny / Symulacja (gdy brak kluczy w .env)
-  // Pozwala na bezpieczne przetestowanie formularza w środowisku dev
+  // 4. Gdy brak skonfigurowanego serwera pocztowego:
+  if (process.env.NODE_ENV === 'production') {
+    console.error('[Email Service] BŁĄD: Brak skonfigurowanych danych wysyłki (SMTP / Resend / Web3Forms) na środowisku produkcyjnym!')
+    return {
+      success: false,
+      provider: 'simulated',
+      error: 'Serwer nie posiada jeszcze skonfigurowanego konta pocztowego (SMTP / Resend). Skorzystaj z poniższego przycisku, aby wysłać wiadomość bezpośrednio.',
+    }
+  }
+
+  // W środowisku deweloperskim — symulacja w konsoli:
   console.log(`
 ================================================================================
 [FORMULARZ KONTAKTOWY — SYMULACJA WYSYŁKI E-MAIL]
