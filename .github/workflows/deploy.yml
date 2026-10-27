@@ -129,6 +129,6 @@ jobs:
             echo "=== Deployment finished successfully! ==="
 
       - name: Verify live production deployment (E2E Smoke Tests)
-        run: pnpm test:e2e
+        run: node --test tests/e2e/production-smoke.test.mjs
         env:
           BASE_URL: https://rafalkamieniarz.com
