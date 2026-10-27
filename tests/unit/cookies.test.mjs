@@ -1,87 +1,21 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { requireTs } from '../utils.mjs';
 
-// Import pure functions and constants
-const VALID_COMPETENCY_IDS = [
-  'agile-lean-practitioner',
-  'serving',
-  'coaching',
-  'facilitating',
-  'guiding-learning',
-  'advising',
-  'leading',
-  'transforming',
-  'self-mastery',
-];
+// Import directly from the real TypeScript source code
+const {
+  VALID_COMPETENCY_IDS,
+  isValidCompetencyId,
+  isValidRating,
+  parseRatingsCookie,
+  parseActiveCompetencyCookie,
+  parsePrioritiesCookie,
+} = requireTs('lib/growth-wheel-cookies.ts');
 
-const DEFAULT_RATINGS = {
-  'agile-lean-practitioner': 1,
-  'serving': 1,
-  'coaching': 1,
-  'facilitating': 1,
-  'guiding-learning': 1,
-  'advising': 1,
-  'leading': 1,
-  'transforming': 1,
-  'self-mastery': 1,
-};
-
-function isValidCompetencyId(val) {
-  return typeof val === 'string' && VALID_COMPETENCY_IDS.includes(val);
-}
-
-function isValidRating(val) {
-  return typeof val === 'number' && Number.isInteger(val) && val >= 1 && val <= 5;
-}
-
-function parseRatingsCookie(raw) {
-  if (!raw) return null;
-  try {
-    const decoded = raw.startsWith('%') ? decodeURIComponent(raw) : raw;
-    const parsed = JSON.parse(decoded);
-    if (!parsed || typeof parsed !== 'object') return null;
-
-    let hasAnyValid = false;
-    const result = { ...DEFAULT_RATINGS };
-
-    for (const id of VALID_COMPETENCY_IDS) {
-      const rawVal = parsed[id];
-      const numVal = typeof rawVal === 'string' ? parseInt(rawVal, 10) : rawVal;
-      if (isValidRating(numVal)) {
-        result[id] = numVal;
-        hasAnyValid = true;
-      }
-    }
-
-    return hasAnyValid ? result : null;
-  } catch {
-    return null;
-  }
-}
-
-function parseActiveCompetencyCookie(raw) {
-  if (!raw) return null;
-  const decoded = raw.startsWith('%') ? decodeURIComponent(raw) : raw;
-  const trimmed = decoded.trim();
-  return isValidCompetencyId(trimmed) ? trimmed : null;
-}
-
-function parsePrioritiesCookie(raw) {
-  if (!raw) return null;
-  try {
-    const decoded = raw.startsWith('%') ? decodeURIComponent(raw) : raw;
-    const parsed = JSON.parse(decoded);
-    if (!Array.isArray(parsed)) return null;
-    const valid = parsed.filter(isValidCompetencyId);
-    return valid.length > 0 ? valid : null;
-  } catch {
-    return null;
-  }
-}
-
-describe('Growth Wheel Cookies & State Persistence', () => {
+describe('Growth Wheel Cookies & State Persistence (Real Source: lib/growth-wheel-cookies.ts)', () => {
   describe('isValidCompetencyId', () => {
     it('accepts all 9 valid competency IDs', () => {
+      assert.equal(VALID_COMPETENCY_IDS.length, 9, 'Expected exactly 9 competencies in Growth Wheel');
       for (const id of VALID_COMPETENCY_IDS) {
         assert.equal(isValidCompetencyId(id), true, `Failed for ${id}`);
       }
