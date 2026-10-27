@@ -83,14 +83,51 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  # 3. Opcjonalne wdrożenie na serwer produkcyjny (jeśli skonfigurowano sekrety w GitHub)
+  # 3. Automatyczne wdrożenie na serwer produkcyjny VPS przez SSH
   deploy-production:
     name: Deploy to Production Server
     needs: docker-publish
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
-      - name: Check deployment config
-        run: |
-          echo "Obraz Docker został opublikowany w ghcr.io/${{ github.repository }}:latest"
-          echo "Gotowy do uruchomienia na serwerze produkcyjnym komendą: docker compose pull && docker compose up -d"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Copy docker-compose to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOSTING_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          source: 'docker-compose.yml'
+          target: '/docker/rafalkamieniarz/'
+          overwrite: true
+
+      - name: Execute deployment commands via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOSTING_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            echo "=== Deployment started on VPS ==="
+            cd /docker/rafalkamieniarz
+
+            echo "Pobieranie najnowszego obrazu Docker..."
+            docker compose pull
+
+            echo "Uruchamianie kontenera..."
+            docker compose up -d --remove-orphans
+
+            echo "Weryfikacja sieci Traefika..."
+            TRAEFIK_NET=$(docker network ls --format '{{.Name}}' | grep -E '^(traefik|proxy|web|traefik-net|traefik_network|traefik_default)$' | head -n 1 || true)
+            if [ -n "$TRAEFIK_NET" ]; then
+              echo "Podłączanie do sieci Traefik: $TRAEFIK_NET"
+              docker network connect "$TRAEFIK_NET" rafalkamieniarz-web 2>/dev/null || true
+            fi
+
+            echo "Status uruchomionego kontenera:"
+            docker ps --filter "name=rafalkamieniarz-web"
+            echo "=== Deployment finished successfully! ==="
