@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
 
-// Load and transpile translations.ts safely using TypeScript compiler API
+// Load and transpile translations.ts safely in-memory using TypeScript compiler API and Data URI
 const tsPath = path.resolve('lib/i18n/translations.ts');
 const tsContent = fs.readFileSync(tsPath, 'utf-8');
 
@@ -15,19 +15,8 @@ const { outputText } = ts.transpileModule(tsContent, {
   },
 });
 
-// Write to a temporary mjs in tests/unit/
-const tempPath = path.resolve('tests/unit/_temp_translations.mjs');
-fs.writeFileSync(tempPath, outputText);
-
-let TRANSLATIONS;
-try {
-  const mod = await import('./_temp_translations.mjs');
-  TRANSLATIONS = mod.TRANSLATIONS;
-} finally {
-  if (fs.existsSync(tempPath)) {
-    fs.unlinkSync(tempPath);
-  }
-}
+const dataUri = `data:text/javascript;base64,${Buffer.from(outputText).toString('base64')}`;
+const { TRANSLATIONS } = await import(dataUri);
 
 function getKeysRecursively(obj, prefix = '') {
   let keys = [];
