@@ -85,12 +85,13 @@ function Multiline({ lines, x, y, lineHeight, className }: MultilineProps) {
 }
 
 type CompetencyWheelProps = {
-  ratings: Record<CompetencyId, Rating>
+  ratings?: Record<CompetencyId, Rating>
   activeId: CompetencyId
   onSelect: (id: CompetencyId) => void
+  showRatings?: boolean
 }
 
-export function CompetencyWheel({ ratings, activeId, onSelect }: CompetencyWheelProps) {
+export function CompetencyWheel({ ratings, activeId, onSelect, showRatings = true }: CompetencyWheelProps) {
   const uid = useId()
   const domainArcStart = polar(-Math.PI / 2 - 0.6, (R_OUTER + R_DOMAIN) / 2)
   const domainArcEnd = polar(-Math.PI / 2 + 0.6, (R_OUTER + R_DOMAIN) / 2)
@@ -179,10 +180,10 @@ export function CompetencyWheel({ ratings, activeId, onSelect }: CompetencyWheel
       {WHEEL_COMPETENCIES.map((competency, index) => {
         const start = segmentStart(index)
         const mid = segmentCenter(index)
-        const label = polar(mid, (R_CORE + R_SUB) / 2 + 8)
+        const label = polar(mid, (R_CORE + R_SUB) / 2 + (showRatings ? 8 : 0))
         const lines = wrap(competency.name, 12)
         const isActive = competency.id === activeId
-        const rating = ratings[competency.id]
+        const rating = ratings ? ratings[competency.id] : undefined
         const dotsY = label.y + (lines.length * 18) / 2 + 8
         return (
           <InfoCard
@@ -192,13 +193,13 @@ export function CompetencyWheel({ ratings, activeId, onSelect }: CompetencyWheel
             title={competency.name}
             description={competency.description}
             href={competency.href}
-            rating={rating}
+            rating={showRatings ? rating : undefined}
             links={competency.subCompetencies}
           >
             <a
               href={competency.href}
               aria-current={isActive ? 'true' : undefined}
-              aria-label={`${competency.name}, ocena ${rating} z 5`}
+              aria-label={showRatings && rating ? `${competency.name}, ocena ${rating} z 5` : competency.name}
               onClick={(event) => select(event, competency.id)}
               className="group cursor-pointer outline-none"
             >
@@ -217,18 +218,20 @@ export function CompetencyWheel({ ratings, activeId, onSelect }: CompetencyWheel
                 lineHeight={18}
                 className={cn('text-[15px] font-semibold', isActive ? 'fill-indigo-700' : 'fill-slate-900')}
               />
-              <g aria-hidden="true">
-                {Array.from({ length: MAX_SCORE }, (_, i) => (
-                  <rect
-                    key={i}
-                    x={label.x - 22 + i * 9.5}
-                    y={dotsY}
-                    width={6}
-                    height={6}
-                    className={cn('transition-colors duration-300', i < rating ? 'fill-indigo-600' : 'fill-slate-200')}
-                  />
-                ))}
-              </g>
+              {showRatings && rating !== undefined && (
+                <g aria-hidden="true">
+                  {Array.from({ length: MAX_SCORE }, (_, i) => (
+                    <rect
+                      key={i}
+                      x={label.x - 22 + i * 9.5}
+                      y={dotsY}
+                      width={6}
+                      height={6}
+                      className={cn('transition-colors duration-300', i < rating ? 'fill-indigo-600' : 'fill-slate-200')}
+                    />
+                  ))}
+                </g>
+              )}
             </a>
           </InfoCard>
         )
@@ -249,13 +252,17 @@ export function CompetencyWheel({ ratings, activeId, onSelect }: CompetencyWheel
         title={CORE_COMPETENCY.name}
         description={CORE_COMPETENCY.description}
         href={CORE_COMPETENCY.href}
-        rating={ratings[CORE_COMPETENCY.id]}
+        rating={showRatings && ratings ? ratings[CORE_COMPETENCY.id] : undefined}
         links={CORE_COMPETENCY.subCompetencies}
       >
         <a
           href={CORE_COMPETENCY.href}
           aria-current={activeId === CORE_COMPETENCY.id ? 'true' : undefined}
-          aria-label={`${CORE_COMPETENCY.name}, ocena ${ratings[CORE_COMPETENCY.id]} z 5`}
+          aria-label={
+            showRatings && ratings
+              ? `${CORE_COMPETENCY.name}, ocena ${ratings[CORE_COMPETENCY.id]} z 5`
+              : CORE_COMPETENCY.name
+          }
           onClick={(event) => select(event, CORE_COMPETENCY.id)}
           className="group cursor-pointer outline-none"
         >
@@ -269,22 +276,30 @@ export function CompetencyWheel({ ratings, activeId, onSelect }: CompetencyWheel
             )}
             strokeWidth={4}
           />
-          <Multiline lines={['Self', 'Mastery']} x={C} y={C - 6} lineHeight={16} className="fill-white text-[14px] font-semibold" />
-          <g aria-hidden="true" className="pointer-events-none">
-            {Array.from({ length: MAX_SCORE }, (_, i) => (
-              <rect
-                key={i}
-                x={C - 22 + i * 9.5}
-                y={C + 18}
-                width={6}
-                height={6}
-                className={cn(
-                  'transition-colors duration-300',
-                  i < ratings[CORE_COMPETENCY.id] ? 'fill-white' : 'fill-indigo-400',
-                )}
-              />
-            ))}
-          </g>
+          <Multiline
+            lines={['Self', 'Mastery']}
+            x={C}
+            y={showRatings ? C - 6 : C}
+            lineHeight={16}
+            className="fill-white text-[14px] font-semibold"
+          />
+          {showRatings && ratings && (
+            <g aria-hidden="true" className="pointer-events-none">
+              {Array.from({ length: MAX_SCORE }, (_, i) => (
+                <rect
+                  key={i}
+                  x={C - 22 + i * 9.5}
+                  y={C + 18}
+                  width={6}
+                  height={6}
+                  className={cn(
+                    'transition-colors duration-300',
+                    i < ratings[CORE_COMPETENCY.id] ? 'fill-white' : 'fill-indigo-400',
+                  )}
+                />
+              ))}
+            </g>
+          )}
         </a>
       </InfoCard>
     </svg>
