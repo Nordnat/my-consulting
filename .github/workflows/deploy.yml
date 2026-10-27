@@ -31,6 +31,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
+      - name: Run automated test suite (Unit & Integration)
+        run: node --test tests/unit tests/integration
+
       - name: Typecheck TypeScript
         run: npx tsc --noEmit
 
@@ -124,3 +127,8 @@ jobs:
             echo "Status uruchomionego kontenera:"
             docker ps --filter "name=rafalkamieniarz-web"
             echo "=== Deployment finished successfully! ==="
+
+      - name: Verify live production deployment (E2E Smoke Tests)
+        run: node --test tests/e2e
+        env:
+          BASE_URL: https://rafalkamieniarz.com
