@@ -1,4 +1,4 @@
-import { describe, it } from 'node:test';
+import { describe, it, before } from 'node:test';
 import assert from 'node:assert/strict';
 
 const BASE_URL = process.env.BASE_URL || 'https://rafalkamieniarz.com';
@@ -16,6 +16,23 @@ async function fetchRoute(path, options = {}) {
 }
 
 describe(`E2E Production Smoke Suite [${BASE_URL}]`, () => {
+  // Warmup retry: wait for freshly restarted container to serve HTTP 200
+  before(async () => {
+    const start = Date.now();
+    const timeout = 30000;
+    while (Date.now() - start < timeout) {
+      try {
+        const res = await fetchRoute('/');
+        if (res.status === 200) {
+          return;
+        }
+      } catch {
+        // waiting for application to boot
+      }
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+    }
+  });
+
   describe('Static & Content Pages', () => {
     it('serves Polish homepage (/) with status 200 and Agile Leader branding', async () => {
       const res = await fetchRoute('/');

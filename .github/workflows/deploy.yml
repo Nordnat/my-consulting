@@ -126,7 +126,15 @@ jobs:
 
             echo "Status uruchomionego kontenera:"
             docker ps --filter "name=rafalkamieniarz-web"
+
+            echo "Oczekiwanie na rozruch kontenera..."
+            sleep 5
             echo "=== Deployment finished successfully! ==="
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
       - name: Verify live production deployment (E2E Smoke Tests)
         run: node --test tests/e2e/production-smoke.test.mjs
