@@ -12,7 +12,7 @@
 
 ## About
 
-- Engineering Manager & Head of Part at Samsung Ads (2024–2026): led two Scrum teams (15 engineers) working with teams in Mountain View; co-led the launch of a new AdTech product from zero to release; transformed Ways of Working toward full technical ownership in teams.
+- Engineering Manager & Head of Part at Samsung Ads (2024–2026): led two Scrum teams (15 engineers) working with teams in Mountain View; co-led the launch of a new AdTech product; transformed Ways of Working toward full technical ownership in teams.
 - Senior Software Engineer & Scrum Master at Samsung Electronics Poland (2022–2024): combined architecture work with the Scrum Master role; removed cross-team dependencies and improved sprint predictability.
 - Software Engineer at Samsung Electronics Poland (2018–2022): web applications in React, Angular and TypeScript.
 - Certifications: Professional Scrum Master II (PSM II), CoachWise Coaching Essentials, CoachWise Facilitation Essentials, Change Management Foundation V3, AI_managers 2 – AI Management, AWS Certified Cloud Practitioner.

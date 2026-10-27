@@ -35,7 +35,7 @@ const EXPERIENCE_PL = [
     company: 'Samsung Electronics Polska · Samsung Ads',
     points: [
       'Prowadzenie 2 zespołów Scrum (15 inżynierów) we współpracy z zespołami w Mountain View.',
-      'Współprowadzenie wdrożenia nowego produktu AdTech od zera do premiery.',
+      'Współprowadzenie wdrożenia nowego produktu AdTech.',
       'Transformacja Ways of Working: przekazanie zespołom pełnej odpowiedzialności technicznej.',
       'Strategia rozwoju technicznego dla społeczności 70+ inżynierów i 3 międzynarodowe warsztaty Tech Huddle.',
     ],
@@ -64,7 +64,7 @@ const EXPERIENCE_EN = [
     company: 'Samsung Electronics Poland · Samsung Ads',
     points: [
       'Led 2 cross-functional Scrum teams (15 engineers) in active partnership with Silicon Valley (Mountain View).',
-      'Co-led zero-to-launch rollout of a major AdTech platform product.',
+      'Co-led rollout of a major AdTech platform product.',
       'Transformed Ways of Working: empowered engineering squads with full technical end-to-end ownership.',
       'Authored tech career roadmap for 70+ engineer community and orchestrated 3 international Tech Huddle summits.',
     ],
