@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { HeroWheel } from './hero-wheel'
+import { WheelLicenseInfo } from '@/components/growth-wheel/wheel-license-info'
 
 export function Hero() {
   const { language, t } = useLanguage()
@@ -48,7 +49,10 @@ export function Hero() {
           </div>
           <figcaption className="flex items-center justify-between gap-4 border-t border-slate-200 pt-3 font-mono text-[11px] uppercase tracking-widest text-slate-500">
             <span>{t.home.hero.wheelCaptionTitle}</span>
-            <span className="text-pretty text-right">{t.home.hero.wheelCaptionSubtitle}</span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-pretty text-right">{t.home.hero.wheelCaptionSubtitle}</span>
+              <WheelLicenseInfo side="top" align="end" />
+            </div>
           </figcaption>
         </figure>
       </div>

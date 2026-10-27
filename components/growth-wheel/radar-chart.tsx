@@ -9,6 +9,7 @@ import {
 } from '@/lib/growth-wheel-data'
 import { useAnimatedValues } from '@/hooks/use-animated-values'
 import { cn } from '@/lib/utils'
+import { WheelLicenseInfo } from './wheel-license-info'
 
 const SIZE = 500
 const CENTER = SIZE / 2
@@ -195,9 +196,13 @@ export function RadarChart({ ratings, activeId, onSelect, onRatingChange }: Rada
   }
 
   return (
-    <svg
-      ref={svgRef}
-      viewBox={`0 0 ${SIZE} ${SIZE}`}
+    <div className="relative">
+      <div className="absolute top-2 right-2 z-10">
+        <WheelLicenseInfo side="bottom" align="end" />
+      </div>
+      <svg
+        ref={svgRef}
+        viewBox={`0 0 ${SIZE} ${SIZE}`}
       className={cn('mx-auto h-auto w-full max-w-[560px] select-none', draggingId && 'cursor-grabbing')}
       role="group"
       aria-label="Agile Coaching Growth Wheel: 8 kompetencji wokół rdzenia Self-Mastery. Przeciągnij punkty, aby ustawić ocenę."
@@ -499,5 +504,6 @@ export function RadarChart({ ratings, activeId, onSelect, onRatingChange }: Rada
         })()}
       </g>
     </svg>
+    </div>
   )
 }

@@ -12,6 +12,7 @@ import {
 } from '@/lib/growth-wheel-data'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
 import { cn } from '@/lib/utils'
+import { WheelLicenseInfo } from './wheel-license-info'
 
 const SIZE = 640
 const C = SIZE / 2
@@ -103,12 +104,16 @@ export function CompetencyWheel({ ratings, activeId, onSelect, showRatings = tru
   }
 
   return (
-    <svg
-      viewBox={`0 0 ${SIZE} ${SIZE}`}
-      className="h-auto w-full"
-      role="group"
-      aria-label="Agile Coaching Growth Wheel: Domain Knowledge, 8 kompetencji z pod-kompetencjami i rdzeń Self Mastery"
-    >
+    <div className="relative">
+      <div className="absolute top-2 right-2 z-10">
+        <WheelLicenseInfo side="bottom" align="end" />
+      </div>
+      <svg
+        viewBox={`0 0 ${SIZE} ${SIZE}`}
+        className="h-auto w-full"
+        role="group"
+        aria-label="Agile Coaching Growth Wheel: Domain Knowledge, 8 kompetencji z pod-kompetencjami i rdzeń Self Mastery"
+      >
       <defs>
         <path
           id={`${uid}-domain`}
@@ -303,6 +308,7 @@ export function CompetencyWheel({ ratings, activeId, onSelect, showRatings = tru
         </a>
       </InfoCard>
     </svg>
+    </div>
   )
 }
 
