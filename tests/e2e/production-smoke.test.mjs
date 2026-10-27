@@ -91,6 +91,16 @@ describe(`E2E Production Smoke Suite [${BASE_URL}]`, () => {
     });
   });
 
+  describe('HTTP Security Headers', () => {
+    it('sets Strict-Transport-Security, X-Content-Type-Options, X-Frame-Options and hides X-Powered-By', async () => {
+      const res = await fetchRoute('/');
+      assert.ok(res.headers.get('strict-transport-security'), 'Missing HSTS');
+      assert.equal(res.headers.get('x-content-type-options'), 'nosniff');
+      assert.equal(res.headers.get('x-frame-options'), 'DENY');
+      assert.equal(res.headers.get('x-powered-by'), null, 'X-Powered-By should be removed');
+    });
+  });
+
   describe('Contact Form API Endpoint (/api/contact)', () => {
     it('rejects incomplete POST requests with 400 Bad Request', async () => {
       const res = await fetchRoute('/api/contact', {

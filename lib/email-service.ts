@@ -170,9 +170,15 @@ export async function sendContactEmail({
   }
 
   // 2. Sprawdzenie SMTP / Nodemailer (jeśli jest skonfigurowany SMTP_HOST oraz SMTP_USER)
-  const smtpHost = process.env.SMTP_HOST
-  const smtpUser = process.env.SMTP_USER
-  const smtpPass = process.env.SMTP_PASS
+  const rawSmtpHost = process.env.SMTP_HOST
+  const rawSmtpUser = process.env.SMTP_USER
+  const rawSmtpPass = process.env.SMTP_PASS
+
+  // Automatyczne usuwanie cudzysłowów i apostrofów, jeśli zostały dodane w pliku .env
+  const smtpHost = rawSmtpHost ? rawSmtpHost.replace(/^['"](.*)['"]$/, '$1').trim() : ''
+  const smtpUser = rawSmtpUser ? rawSmtpUser.replace(/^['"](.*)['"]$/, '$1').trim() : ''
+  const smtpPass = rawSmtpPass ? rawSmtpPass.replace(/^['"](.*)['"]$/, '$1') : ''
+
   if (smtpHost && smtpUser && smtpPass) {
     try {
       const port = Number(process.env.SMTP_PORT || 587)
@@ -187,7 +193,9 @@ export async function sendContactEmail({
         },
       })
 
-      const fromAddress = process.env.EMAIL_FROM || `"${name} (kontakt)" <${smtpUser}>`
+      const rawFrom = process.env.EMAIL_FROM
+      const cleanFrom = rawFrom ? rawFrom.replace(/^['"](.*)['"]$/, '$1').trim() : ''
+      const fromAddress = cleanFrom || `"${name} (kontakt)" <${smtpUser}>`
       const info = await transporter.sendMail({
         from: fromAddress,
         to: recipient,

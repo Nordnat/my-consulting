@@ -20,11 +20,25 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=coachflow_proxy"
+      # Główny router witryny
       - "traefik.http.routers.rafalkamieniarz.rule=Host(`rafalkamieniarz.com`) || Host(`www.rafalkamieniarz.com`)"
       - "traefik.http.routers.rafalkamieniarz.entrypoints=websecure"
       - "traefik.http.routers.rafalkamieniarz.tls=true"
       - "traefik.http.routers.rafalkamieniarz.tls.certresolver=mytlschallenge"
+      - "traefik.http.routers.rafalkamieniarz.service=rafalkamieniarz"
       - "traefik.http.services.rafalkamieniarz.loadbalancer.server.port=3000"
+      # Ochrona Rate Limiting dla formularza kontaktowego (maks. 5 zapytań/minutę)
+      - "traefik.http.middlewares.contact-ratelimit.ratelimit.average=5"
+      - "traefik.http.middlewares.contact-ratelimit.ratelimit.burst=3"
+      - "traefik.http.middlewares.contact-ratelimit.ratelimit.period=1m"
+      # Dedykowany router z wyższym priorytetem dla /api/contact z nałożonym limitem
+      - "traefik.http.routers.rafalkamieniarz-contact.rule=(Host(`rafalkamieniarz.com`) || Host(`www.rafalkamieniarz.com`)) && PathPrefix(`/api/contact`)"
+      - "traefik.http.routers.rafalkamieniarz-contact.entrypoints=websecure"
+      - "traefik.http.routers.rafalkamieniarz-contact.tls=true"
+      - "traefik.http.routers.rafalkamieniarz-contact.tls.certresolver=mytlschallenge"
+      - "traefik.http.routers.rafalkamieniarz-contact.middlewares=contact-ratelimit"
+      - "traefik.http.routers.rafalkamieniarz-contact.service=rafalkamieniarz"
+      - "traefik.http.routers.rafalkamieniarz-contact.priority=100"
     networks:
       - proxy
     env_file:
