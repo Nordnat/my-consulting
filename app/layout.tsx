@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { cookies } from 'next/headers'
 import { Geist, Geist_Mono } from 'next/font/google'
+import Script from 'next/script'
 import { CookieConsent } from '@/components/cookie-consent'
 import { CONSENT_COOKIE, parseConsent } from '@/lib/cookie-consent'
 import { LanguageProvider } from '@/lib/i18n/language-context'
@@ -83,6 +84,19 @@ export default async function RootLayout({
           {children}
           <CookieConsent initialConsent={consent} />
         </LanguageProvider>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MCNTF10D1J"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-MCNTF10D1J');
+          `}
+        </Script>
       </body>
     </html>
   )
