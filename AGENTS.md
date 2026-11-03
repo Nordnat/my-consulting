@@ -7,3 +7,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Zasady projektu
+
+- **Aktualizacja mapy witryny (sitemap)**: Zawsze przy dodawaniu nowych stron, ścieżek URL lub treści wielojęzycznych należy uaktualnić plik `app/sitemap.ts`.
+- **Weryfikacja SEO**: Wszystkie nowe strony muszą posiadać zdefiniowane metadane (`title`, `description`, `alternates.languages` i `openGraph`).

@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
+        disallow: ['/api/'],
       },
       {
         userAgent: [
@@ -20,6 +21,7 @@ export default function robots(): MetadataRoute.Robots {
           'Amazonbot',
         ],
         allow: '/',
+        disallow: ['/api/'],
       },
     ],
     sitemap: 'https://rafalkamieniarz.com/sitemap.xml',

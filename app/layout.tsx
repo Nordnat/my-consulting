@@ -48,6 +48,15 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     type: 'website',
   },
+  twitter: {
+    card: 'summary',
+    title: 'Rafał Kamieniarz — Agile Leader & Engineering Manager',
+    description:
+      'Agile Leader i Engineering Manager z ponad 8-letnim doświadczeniem w Samsung Electronics. Delivery, metryki przepływu i DORA, Ways of Working oraz rozwój liderów.',
+  },
+  verification: {
+    google: 'bdJ3fF7dGJgGBRjz5cLiAglqMGRDPDC6P-qGzJypELw',
+  },
   icons: {
     icon: [
       { url: '/favicon.ico' },
